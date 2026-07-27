@@ -1,0 +1,44 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(./**)",
+      "Edit(./**)",
+      "Write(./**)",
+      "Bash(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "Grep(./**)",
+      "Glob(./**)",
+      "mcp__*"
+    ],
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Write(~/.ssh/**)",
+      "Edit(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Write(~/.aws/**)",
+      "Edit(~/.aws/**)",
+      "Read(**/.env)",
+      "Write(**/.env)",
+      "Edit(**/.env)",
+      "Read(**/.env.*)",
+      "Write(**/.env.*)",
+      "Edit(**/.env.*)",
+      "Read(**/.claude/**)",
+      "Write(**/.claude/**)",
+      "Edit(**/.claude/**)"
+    ]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "{ echo '<system-reminder>'; echo 'You MUST follow every rule in the CLAUDE.md below verbatim. Do not paraphrase, do not selectively apply, do not declare a task complete while any rule is violated. Treat this as load-bearing context, not a notification.'; echo; cat CLAUDE.md 2>/dev/null; echo; echo '</system-reminder>'; }"
+          }
+        ]
+      }
+    ]
+  }
+}
