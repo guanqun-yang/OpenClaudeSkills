@@ -14,6 +14,7 @@ This repository is a curated public mirror — a private working repo holds the 
 | `en-zh-translation` | Practices for English → Simplified Chinese prose translation: terminology consistency, sentence restructuring, punctuation, bilingual LaTeX typesetting. |
 | `humanize` | Makes Claude-written prose read as human, with per-1,000-word budgets for the tics that actually show up under measurement (`rather than`, negation frames, em dashes, bold and table scaffolding) and rewrites for each. |
 | `latex-paper-project` | File layout and editing conventions for LaTeX paper projects (`main.tex`, `sections/`, `figures/`, `tables/`, `zotero.bib`). |
+| `minto` | Structures a document as a Minto pyramid before drafting, or reverse-engineers a draft into one and repairs it. Covers memos, Slack messages, reports, and proposals as well as papers and rebuttals. |
 | `modern-cli` | Prefers faster CLI replacements (eza, bat, fd, rg, dust, tokei, xh) with flags that suppress interactive TUI output. |
 | `paper-summary` | Turns paper PDFs into structured two-section deep dives: executive summary plus method walkthrough. |
 | `system-branding` | Generates names for CS research systems, then checks uniqueness against Google Scholar, GitHub, and DBLP. |
