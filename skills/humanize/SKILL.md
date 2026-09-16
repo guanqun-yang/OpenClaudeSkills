@@ -1,6 +1,6 @@
 ---
 name: humanize
-description: Make Claude-written prose read as human. Budgets and rewrites for the tics that actually show up under measurement - "rather than", definition by negation, copular framing and the "X is Y, and Z is W" couplet, counting reflexes, em dashes, missing commas after openers, and bold/table scaffolding. Calibrated on 520K words of Claude prose against register-matched human corpora.
+description: Make Claude-written prose read as human. Budgets and rewrites for the tics that actually show up under measurement - "rather than", definition by negation, copular framing and the "X is Y, and Z is W" couplet, generic nouns where a name exists, counting reflexes, em dashes, missing commas after openers, and bold/table scaffolding. Calibrated on 520K words of Claude prose against register-matched human corpora.
 ---
 
 # Humanize
@@ -136,6 +136,22 @@ Fix: give the fact a verb and an agent. Then either drop the verdict, because th
 > **Don't:** A rejection would be a usable answer, and silence is the only one I cannot act on.
 > **Do:** I can act on a rejection. Silence gives me nothing to act on.
 
+## 5d. Name the Thing
+
+When a specific name exists, use it, every time. Claude reaches for a generic noun (*the platform*, *the mechanism*, *the action*, *the change*, *the tool*, *the committee*, *the system*, *the venue*) or rotates synonyms for variety once a name has been used, and the reader has to re-resolve the reference on each occurrence. In an email with five parties on it, *the committee* could be the Program Chairs, the General Chair, or the whole conference, and the writer knew which one and the reader does not. A second-language reader pays twice, because the generic word is often also the more abstract one.
+
+The same rule covers pronouns. *It*, *this*, *that*, and *they* are fine when the antecedent is the previous noun. When the antecedent is a sentence back, or when two candidates sit in the previous sentence, repeat the name.
+
+> **Don't:** The Program Chairs said the platform does not allow the change. Support confirmed that a mechanism exists and offered to apply it once the committee approves.
+> **Do:** The Program Chairs said OpenReview does not allow the edit. OpenReview Support confirmed that a PC Revision can make the edit and offered to apply it once the Program Chairs approve.
+
+> **Don't:** The tool ranks the candidates itself and reports anything it is unsure about.
+> **Do:** spotify-cli ranks the ten search results itself and reports any line that scores under 0.85.
+
+Repeating a name is not a fault. Elegant variation, the habit of swapping in a synonym to avoid a repeat, is a fault: it trades one word of monotony for a reference the reader has to check. Say *OpenReview* four times if the sentence is about OpenReview four times.
+
+The test: for each generic noun or pronoun, ask whether you could replace it with a proper name or a specific term you have already used. If yes, replace it. This rule was not measured in the survey; it was added on 16 September 2026 from reader feedback on the same email draft as sections 5c and 7b.
+
 ## 6. Counting and Absolutes
 
 `every`, `all three`, `exactly`, `the two`, `the only` run 3–11× human. The enumerative reflex reads as machine-tidy because real writers rarely notice that their reasons happen to number three.
@@ -223,6 +239,7 @@ Given a finished draft, work in this order. Highest yield first, and each pass i
 7. Add the hedges and attributions back where the claim rests on one source (§8).
 8. Read the first sentence of each paragraph in sequence. If they form a list of definitions, the draft is still a glossary, not an argument.
 9. Search for sentence openers (`As a result`, `In other words`, `On <date>`, `At <time>`, `If`, `When`, `Under`) and confirm each is followed by a comma (§7b).
+10. Search for `the platform`, `the mechanism`, `the tool`, `the system`, `the committee`, `the change`, `the action`, and for `it`, `this`, `that`, `they` at the start of a sentence. Replace each with the name where one exists (§5d).
 
 A quick numeric check on a file, if useful:
 
