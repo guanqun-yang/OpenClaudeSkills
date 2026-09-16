@@ -22,13 +22,22 @@ This repository is a curated public mirror — a private working repo holds the 
 
 Drop-in project instructions for a given kind of work: `blog`, `coding`, `paper-writing`, `poster`, `rebuttal`.
 
+## Slash commands
+
+Single-file prompts under `commands/`; `commands/<name>.md` becomes `/<name>` once it is in a project's `.claude/commands/`. They are never auto-triggered.
+
+| Command | What it does |
+|---|---|
+| `cwd` | `/cwd <folder>` sets, or creates, the working folder for the current task inside the repository. Type `@` to autocomplete an existing folder name. |
+
 ## Installation
 
 Copy the directories you want into your project:
 
 ```bash
-mkdir -p .claude/skills
+mkdir -p .claude/skills .claude/commands
 cp -r skills/modern-cli .claude/skills/
+cp commands/cwd.md .claude/commands/
 cp claudemd/paper-writing/CLAUDE.md ./CLAUDE.md
 ```
 
