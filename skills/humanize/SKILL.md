@@ -1,6 +1,6 @@
 ---
 name: humanize
-description: Make Claude-written prose read as human. Budgets and rewrites for the tics that actually show up under measurement - "rather than", definition by negation, copular framing and the "X is Y, and Z is W" couplet, generic nouns where a name exists, counting reflexes, em dashes, missing commas after openers, and bold/table scaffolding. Calibrated on 520K words of Claude prose against register-matched human corpora.
+description: Make Claude-written prose read as human. Budgets and rewrites for the tics that actually show up under measurement - "rather than", definition by negation, copular framing and the "X is Y, and Z is W" couplet, generic nouns where a name exists, counting reflexes, em dashes, missing commas after openers, and bold/table scaffolding - plus the tone failures the counts miss: rhetoric, the writer's own grievance, and ultimatums in requests. Calibrated on 520K words of Claude prose against register-matched human corpora.
 ---
 
 # Humanize
@@ -152,6 +152,26 @@ Repeating a name is not a fault. Elegant variation, the habit of swapping in a s
 
 The test: for each generic noun or pronoun, ask whether you could replace it with a proper name or a specific term you have already used. If yes, replace it. This rule was not measured in the survey; it was added on 16 September 2026 from reader feedback on the same email draft as sections 5c and 7b.
 
+## 5e. Rhetoric
+
+Anaphora (a word repeated across clauses: *Silence gives me nothing to act on, and I have received only silence for a week*), antithesis (*I can act on a rejection. Silence gives me nothing.*), the *X. Not Y.* pair, and the epigram that closes a paragraph on a quotable line all pass every count in this file. They are speech devices, and in an email, a paper, or a report they read as a speech: the reader hears a writer performing a position. In a request they read as pressure. Budget zero outside narrative prose.
+
+> **Don't:** I can act on either answer, including a rejection. Silence gives me nothing to act on, and I have received only silence for a week.
+> **Do:** Could you let me know either way by 23 September, so that my co-authors and I can plan the next step?
+
+The test: would you say the sentence, in those words, across a table to the reader? If it would sound rehearsed, it is rhetoric. This section was added on 16 September 2026 after a draft that passed every budget was read by its recipient's peer as an ultimatum.
+
+## 5f. The Writer's Sentences
+
+Some sentences exist to record the writer's state, and the metrics cannot see them: *both messages are still unanswered*, *for a week I have received silence*, *I am copying X so that everyone reads the same message*, *I am copying Y because Z*, *I would prefer to stop writing to the committee*. Each tells the reader how the writer feels about the history. None gives the reader anything they need in order to act, and to a reader with power over the outcome each one reads as an accusation entered into the record.
+
+The test: delete the sentence. If the reader can still do what the document asks, the sentence was for the writer, and it goes. Keep the facts the reader must accept (a date, a deadline, what the fix is, what it costs); drop the account of who failed to reply.
+
+> **Don't:** I asked the Program Chairs on 11 September and again on 14 September, and both messages are still unanswered.
+> **Do:** OpenReview Support can apply the fix on a one-line authorization from any Program Chair.
+
+Added on 16 September 2026 from the same draft as section 5e.
+
 ## 6. Counting and Absolutes
 
 `every`, `all three`, `exactly`, `the two`, `the only` run 3–11× human. The enumerative reflex reads as machine-tidy because real writers rarely notice that their reasons happen to number three.
@@ -202,6 +222,7 @@ So the correction is *not* "be more direct". It is the opposite:
 - Use *usually*, *often*, *tends to* when the claim is a tendency. Claude states tendencies as laws.
 - Let *But* start a sentence. Let *In other words* restate something the reader may not have caught the first time.
 - Attribute. *The authors argue*, *the docs claim*, *I could not reproduce* all carry more information than a flat assertion does.
+- In a request to someone senior, or to anyone who can refuse, the softeners are load-bearing. Phrase the ask as a question with room to decline: *Could you please confirm whether you approve…*, *or let us know how you would like to proceed*. A flat statement of the two outcomes (*either A happens or B happens*) is an ultimatum however plain the words, and the short declaratives this file otherwise favors make it worse. The plain-sentence rules in sections 3 to 7 shape the facts; the ask itself stays conditional.
 
 ## 9. Page Furniture
 
@@ -240,6 +261,8 @@ Given a finished draft, work in this order. Highest yield first, and each pass i
 8. Read the first sentence of each paragraph in sequence. If they form a list of definitions, the draft is still a glossary, not an argument.
 9. Search for sentence openers (`As a result`, `In other words`, `On <date>`, `At <time>`, `If`, `When`, `Under`) and confirm each is followed by a comma (§7b).
 10. Search for `the platform`, `the mechanism`, `the tool`, `the system`, `the committee`, `the change`, `the action`, and for `it`, `this`, `that`, `they` at the start of a sentence. Replace each with the name where one exists (§5d).
+11. Read for repeated words across clauses, *X. Not Y.* pairs, and quotable closing lines; cut them (§5e). Then delete every sentence that records the writer's state or explains the copy list (§5f).
+12. Read the whole document once as the recipient. If the ask is to someone who can refuse, confirm it is phrased as a question with room to decline (§8).
 
 A quick numeric check on a file, if useful:
 
@@ -257,3 +280,4 @@ rg -o -- '\*\*[^*]+\*\*' FILE | wc -l # budget: 15 per 100 prose blocks
 - Do not add hedges to claims that are actually certain. A measured number is a measured number.
 - Do not swap the banned constructions for synonyms of themselves. Replacing `rather than` with `as opposed to` fixes the count and none of the writing.
 - Do not chase burstiness. Claude's sentence-length mean (21.9 words) and variance already sit inside the human range; sentence length is not the tell and does not need engineering.
+- Do not treat the counts as the goal. A draft can pass every budget in section 2 and still read as an ultimatum, a complaint, or a speech (sections 5e and 5f). The counts are a floor. Before calling a document done, read it once straight through as its recipient, with their stake and their power in mind, and fix what that reading finds even when the numbers are clean.

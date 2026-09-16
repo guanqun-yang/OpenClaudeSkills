@@ -36,7 +36,7 @@ Top-down first. Bottom-up only when the top will not come.
 ### Top-down
 
 1. **Subject.** One noun phrase.
-2. **Reader and Question.** Name the reader. Write the single question they have about the Subject, in their words. Two questions must collapse into one (*should we, and if so how* is *how*, since *no* ends the document).
+2. **Reader and Question.** Name the reader. Write the single question they have about the Subject, in their words. Two questions must collapse into one (*should we, and if so how* is *how*, since *no* ends the document). Then write the reader's stake and their power relative to you in one line each. If the reader can refuse, the document is an approval request whatever the writer feels about the history, and the Answer is a question the reader can say yes to.
 3. **Answer.** One sentence with the Subject as its subject. This is the top of the pyramid.
 4. **Situation.** The first thing about the Subject the reader will accept without argument. If nothing comes, the Subject is wrong or the story starts in the wrong place.
 5. **Complication.** What happened inside that Situation to raise the Question. Now check: does Situation plus Complication produce exactly the Question written in step 2? If not, change the Question or the Complication until they match. This check is the whole point of the exercise.
@@ -84,6 +84,8 @@ Then return to the top-down list at step 6.
 
 An introduction reminds; it does not inform. Everything in it is something the reader already knows or will accept as plainly true. Evidence, tables, and new claims belong in the body. All history and chronology belong in the introduction, because the body can hold only ideas, and a sequence of events is not an idea.
 
+**No grievance.** A log of who failed to reply, and when, is chronology the reader does not need in order to act; it belongs in your own notes. The same goes for a sentence explaining why each person is copied, and for any sentence whose job is to show the reader that you have been patient. Include only the facts the reader must accept in order to say yes. This was added on 16 September 2026 after a draft escalation email put a week of unanswered messages into its introduction and read, to its reader, as a public complaint.
+
 **Length** is whatever it takes to bring the reader to the Question: one sentence for a colleague (*You asked whether…*), three or four paragraphs for a cold reader. Never more. If the introduction needs exhibits, it is overstating the obvious.
 
 **Order** changes tone, not content. All four parts stay; their sequence is a choice:
@@ -118,6 +120,8 @@ An introduction reminds; it does not inform. Everything in it is something the r
 The four standard reasons under an approval request, in this order: the problem cannot wait; this fix solves it (or is the best of the options the reader already knows); the cost is covered by the return; any side benefits. Only the first three carry the decision. The fourth is included when true, never invented.
 
 A decision memo never structures the Key Line as *A is no good, B is no good, therefore C*. The reason to do C is that it solves the problem, and alternatives appear in the Complication only when the reader already knows them.
+
+An *either A or B* Key Line is an ultimatum when the reader could simply approve A. Use the decision form only when the reader genuinely has to choose between options of comparable cost. When one option is a one-line approval and the other is the writer walking away, the document is an approval request for A, and B is at most a clause of fallback (*or let me know how you would prefer to proceed*).
 
 **From a problem to an introduction.** For a paper, proposal, or report, lay the problem out first and read the introduction off it:
 
@@ -253,6 +257,7 @@ Same pyramid, different page. The two tables say where each part goes.
 |---|---|---|---|---|
 | Slack / chat message | First line, as a sentence the reader could act on alone | Usually none; one clause of Situation if the reader lacks context (*Since the EU launch…*) | At most three lines, each one reason or step; the ask or decision needed is the last line | None. No bold lead-ins, no nested bullets |
 | Email | First line | *You asked…* / *Since X…*, one or two sentences | Two to four reasons or steps as short paragraphs or a flat list | None; points are topic sentences |
+| Email, request upward (to someone senior, or with power to refuse) | First paragraph: the request and its date, as a question the reader can answer yes to, with one clause of fallback | One paragraph: the fact that created the need, and the cost of yes, stated in one clause | One or two short paragraphs; no chronology of who did not reply, no explanation of the copy list | None. Reference links, if any, in a short list at the end |
 | Memo / directive | First paragraph, after a one-paragraph S-C | S-C in the first paragraph; Question implied | Steps with owner and date, set out as a list, then one short section each | One heading per Key Line point, worded as the step |
 | Approval request | *We recommend approving X* | Problem (S), fix and cost (C) | The standard reasons (§3), strongest first | One per reason, or none if under a page |
 | Decision memo | The chosen option, named | S, then the options as C | Criteria the choice meets, or objectives if no option wins | One per criterion |
