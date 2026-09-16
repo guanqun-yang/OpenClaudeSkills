@@ -6,8 +6,8 @@ Write for an **impatient CS undergraduate** whose background is:
 
 - **Comfortable with:** algorithms 101 (Big-O, sorting, graph traversal, dynamic programming) and the 101 level of ML / DL / RecSys / LLMs / agentic workflows (gradient descent, backprop, attention, embeddings, train/val/test split, accuracy/F1, collaborative filtering vs. content-based, what a transformer is, what training and inference mean).
 - **Shaky on:** advanced statistics (Bayesian inference, measure theory, causal identification, hypothesis-testing nuances) and niche subfields. Assume **no working knowledge** of OS, computer networks, cryptography, computer graphics, or hardware internals beyond name recognition (e.g., "TLB" or "GPU memory hierarchy" may ring a bell but the precise definition does not).
-- **Impatient:** will close the tab if the first paragraph does not pay off, or if any one section drags. Lead with the punchline; defer the buildup.
-- **Reading English as a second language:** assume solid technical English but no childhood exposure to the language. This reader parses a figurative use of a common word literally, stops, and works out what you meant. The vocabulary is not the obstacle; the figurative layer sitting on top of familiar vocabulary is. Combined with impatience, this sets the standard every sentence must meet: **understood on the first pass, with no rereading and no guessing.**
+
+Combined with the impatience and second-language reading of the user-level reader profile, this sets the standard every sentence must meet: **understood on the first pass, with no rereading and no guessing.**
 
 Gloss every term beyond the comfort zone on first use in **one short clause** — e.g., *"RLHF (reinforcement learning from human feedback — the model is tuned on rankings produced by humans)"*. Inline the gloss; never link out for the definition. Do not gloss anything inside the comfort zone — defining "gradient descent" insults the reader.
 
@@ -52,7 +52,6 @@ The audience above is impatient *and* reading in a second language. Both make th
 - **Never link to files inside the project.** Do not hyperlink to anything in `resources/`, `notes/`, or other local folders. The reader does not have access to them.
 - **Source material in `resources/` is usually public.** Most of it (GitHub repos, papers, blog posts, documentation) exists on the open web. Find the public URL and link to that instead.
 - If you cannot find the public URL with confidence, **ask the user for the exact link** rather than guessing.
-- **Verify every link before inserting it.** Fetch the URL and confirm it returns a valid response (not 404, timeout, or other error).
 - **Private GitHub repos are an exception.** If a link returns a 404 and the repo may be private, ask the user to confirm before either inserting the link anyway or omitting it.
 
 ## Paper Summaries
@@ -93,22 +92,7 @@ The audience above is impatient *and* reading in a second language. Both make th
 
 - **No em dashes or en dashes.** Use a comma, semicolon, or separate sentence instead. Never use `—` or `–`.
 - **No bare dollar signs for currency.** Write `USD 50` (or `50 USD`), not `$50`. Two or more `$` on the same line are parsed as math delimiters by most Markdown-to-HTML pipelines (KaTeX, MathJax, Pandoc with `--mathjax`), which silently swallows the prose between them. Reserve `$...$` and `$$...$$` strictly for actual math. For non-USD currencies, spell the ISO code (`EUR 50`, `JPY 5000`).
-- **No native-speaker-only idioms.** Replace common English words used in a special, idiomatic, or metaphorical sense that a non-native reader with solid technical English would not necessarily catch. The word itself may be familiar; the figurative meaning is the problem. Blog readers are international, and an impatient reader who has to pause to decode an idiom closes the tab. Substitute the literal equivalent:
-  - "sign off" → "approve"
-  - "edge" / "edge out" → "narrowly beat" / "outperform by a small margin"
-  - "lever" → "choice" / "parameter" / "knob"
-  - "sweet spot" → "best choice" / "optimal setting"
-  - "out of the box" → "without modification" / "by default"
-  - "ballpark" → "approximate" / "rough estimate"
-  - "low-hanging fruit" → "easy gain" / "straightforward improvement"
-  - "moving the needle" → "producing measurable improvement"
-  - "rule of thumb" → "common practice" / "heuristic"
-  - "across the board" → "in every setting" / "uniformly"
-  - "double down on" → "commit further to" / "intensify"
-  - "punch above its weight" → "outperform expectations for its size"
-
-  The rule applies even when the idiomatic phrase is shorter or more vivid. Accessibility outranks stylistic flair.
-- **The larger risk is the figurative use of an ordinary word, which no list can enumerate.** The word is common, the reader knows it, and the intended meaning is metaphorical. The most frequent source is writing about an abstract thing as if it were alive or physical. Watch for it especially in research writing, where it is nearly invisible to the author:
+- **The larger risk is the figurative use of an ordinary word, which no idiom list can enumerate.** The word is common, the reader knows it, and the intended meaning is metaphorical. The most frequent source is writing about an abstract thing as if it were alive or physical. Watch for it especially in research writing, where it is nearly invisible to the author:
   - a proposal or idea that "dies", is "killed", or "survives" → fails, is ruled out, holds up
   - a research area that is "stuck", "crowded", "thin", or "hot" → has not produced an answer, already has several papers, has few papers, is heavily published
   - fields that "have never spoken to each other" or "never met" → have never cited each other
@@ -120,14 +104,7 @@ The audience above is impatient *and* reading in a second language. Both make th
   - a "cautionary tale" → a warning
   - a result that "carries the weight" of a section → is the section's main claim
 
-  **The test:** if a reader taking the words literally would picture a physical action or a living thing, rewrite it. Do this even when the metaphor is the natural way to say it, and even when the replacement is longer.
-- **Avoid AI-favored words and phrases.** Use sparingly or replace with plainer alternatives:
-  - **Verbs/phrases to watch:** delve into (→ examine, explore), underscore (→ show, highlight), harness (→ use), illuminate (→ explain, clarify), facilitate (→ help, enable), bolster (→ support, strengthen), streamline (→ simplify), revolutionize/transformative/game-changing (→ be specific about what changed)
-  - **Transitions to watch:** "That being said," "At its core," "This underscores the importance of," "From a broader perspective," "A key takeaway is" — prefer shorter, less formulaic transitions
-  - **Hedges to watch:** "generally speaking," "arguably," "to some extent," "broadly speaking" — either commit to the claim or qualify it precisely
-  - **Structural tells:** "provide a comprehensive," "a nuanced understanding," "the complex interplay," "play a pivotal/crucial role," "a multi-faceted approach," "pave the way," "shed light on," "navigate the complex," "far-reaching implications," "a significant milestone"
-  - **Buzzwords to watch:** "cutting-edge," "innovative," "seamless integration," "scalable solution"
-- **No "pipeline" for agentic systems.** Use "workflow," "loop," or "system" instead.
+  Rewrite these even when the metaphor is the natural way to say it, and even when the replacement is longer.
 - Prefer short paragraphs and short sentences. A blog reader scrolls; they do not parse.
 
 ## Final Polish Pass
@@ -137,7 +114,7 @@ When you believe the post is done, do a **dedicated sweep** of the entire draft 
 1. **Flow** — does each section lead naturally into the next?
 2. **Logic** — are claims supported? Are there gaps a 101-level reader would stumble over?
 3. **Bridges** — add or tighten transitions between sections so the post reads as one piece, not a stack of notes.
-4. **Readability** — break up long paragraphs, cut filler words, replace AI-favored phrases and native-speaker-only idioms flagged above. Read each sentence asking whether someone parsing carefully in a second language gets it on the first pass.
+4. **Readability** — break up long paragraphs, cut filler words, replace idioms and figurative uses of ordinary words. Read each sentence asking whether someone parsing carefully in a second language gets it on the first pass.
 5. **Links** — re-verify every link still resolves.
 6. **Citations** — every author name, year, or `[N]` marker is a clickable link to the original paper or website (publisher page, arXiv abs, or official site). No bare-name citations.
 7. **Paper summaries** — confirm each is foldable, was produced via the `paper-summary` skill, and lives inside the Appendix.

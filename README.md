@@ -73,6 +73,21 @@ See the [skills documentation](https://docs.claude.com/en/docs/claude-code/skill
 
 Rule of thumb: if you would be annoyed when Claude forgets a rule, it belongs in `CLAUDE.md`. If it is a recipe you reach for occasionally, make it a skill.
 
+## How `CLAUDE.md` layers
+
+Claude Code loads every `CLAUDE.md` it can find, in full, at the start of each session: `~/.claude/CLAUDE.md` first, then each `CLAUDE.md` from the working directory up to `/`. The files concatenate; a lower file never overrides a higher one, and a rule that appears twice is read twice. The presets here are meant for two layers:
+
+| Layer | Source | Copy to | Loaded when | Holds |
+|---|---|---|---|---|
+| User | `claudemd/global/CLAUDE.md` | `~/.claude/CLAUDE.md` | every session, in every directory | who the reader is, how replies and prose are written |
+| Project | `claudemd/<mode>/CLAUDE.md` | `<project>/CLAUDE.md` | sessions started inside that project | rules for one kind of work: `coding`, `paper-writing`, `blog`, `poster`, `rebuttal` |
+
+Skills are the third layer: their descriptions are always loaded, their bodies only on `/name` or auto-match.
+
+- A rule lives in the highest layer where it is always true. Reply style and a notes naming convention are user-level; LaTeX float placement is project-level; a figure palette is a skill.
+- Do not put a `CLAUDE.md` in `$HOME` itself. It is a parent of every project, so it loads everywhere, and it is easy to forget it exists.
+- Do not repeat a rule across layers. Duplicates cost tokens every turn and drift into contradictions.
+
 ## License
 
 MIT

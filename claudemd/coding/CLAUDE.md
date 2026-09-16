@@ -1,11 +1,5 @@
 # Coding Project
 
-## Workflow
-
-- **Always clarify before executing.** Before making any change, present the plan, its feasibility, and how likely it is to succeed. Wait for confirmation before proceeding.
-- **Never stall on long-running processes.** Actively check progress every 30 minutes. If anything unexpected or suspicious is found, make immediate fixes to the code before waiting for user input — otherwise too much time is wasted.
-- **Verify cited links are reachable.** Whenever you cite a URL to support an argument, claim, or reference, fetch it first and confirm it returns a valid response (not 404, timeout, or other error). Never include a link you haven't verified.
-
 ## General
 
 - Write clean, readable code. Prefer clarity over cleverness.
@@ -21,20 +15,6 @@
 - Do not create abstractions for one-time operations.
 - Do not over-engineer or over-defend. Start with the simplest solution that works. Add complexity only when the simple version demonstrably fails.
 - When adding a significant feature, check for regression on a more basic version of the code before declaring it done.
-
-## Notes (`notes/`)
-
-- Note files follow the naming convention `YYYYMMDD-HHMMSS-DESCRIPTION.md` (e.g., `20260329-233835-PLAN.md`).
-- When updating a note, **rename the file with a fresh timestamp** (via `date +%Y%m%d-%H%M%S`) but keep the description suffix unchanged. For example, updating `20260329-233835-PLAN.md` produces `20260330-101500-PLAN.md`.
-- Make minimal, focused changes. Do not add features, refactor, or "improve" beyond what was asked.
-- Do not add comments unless the logic is non-obvious.
-- Run existing tests or compilation checks after making changes.
-
-## Reference Materials
-
-- `resources/` is **read-only** if it exists. It contains reference materials (source code, documentation, blogs, notes) to consult.
-- **Never copy and paste from `resources/` verbatim.** When you need to use information from it, read and understand the content, then write your own version.
-- Never modify, delete, or create files in `resources/`.
 
 ## Append-Only Directories
 
@@ -78,8 +58,3 @@
 - Run existing tests after making changes.
 - If adding a new feature, add a test if the project has a test suite.
 - Do not mock internal code unless absolutely necessary.
-
-## Git
-
-- Do not commit unless explicitly asked.
-- Write concise commit messages that explain *why*, not *what*.

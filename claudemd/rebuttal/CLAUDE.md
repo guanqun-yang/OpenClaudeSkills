@@ -6,7 +6,7 @@ The governing principle: **the rebuttal is read by an impatient reviewer and by 
 
 ## 1. Workflow
 
-- **Clarify before executing.** Before drafting or editing, present the plan, name the exact numbers and wording you intend to use, and wait for confirmation. A wrong plan costs more to redo than to check.
+- **The plan you present before drafting names the exact numbers and wording you intend to use.** A wrong plan costs more to redo than to check.
 - **Verify every cited link by title match, not just HTTP 200.** Fetch the page, confirm the title and authors match the citation, then commit the URL.
 - **Sleep before writing.** Do not send an angry first draft. Do not vent on social media. Do not email the program chairs except for a real process violation (missing reviews, abusive language). "The reviewer is wrong" is not a process violation.
 
@@ -27,11 +27,8 @@ rebuttal/
 
 ## 3. Audience and Voice
 
-Assume the reviewer has this profile, and write for it in every sentence:
+The reviewer is the reader of the user-level profile, with two additions that change how every sentence is written:
 
-- **Impatient.** Will skim past any paragraph that does not pay off in one line. Lead with the answer; defer the buildup.
-- **Non-native English speaker** with solid technical English but no fluency in idiom or metaphor.
-- **Shaky on statistics.** Reads `p < 0.05` as "good" without parsing it. Any probabilistic claim needs a plain-English clause beside it.
 - **May not have reread the paper, and may not remember their own review.** The response must stand on its own (Section 5).
 - **Often a self-styled expert with a large ego, and the review may be partly AI-written.** This does not lower the technical bar; it raises the tone bar.
 
@@ -94,11 +91,9 @@ Assume the reviewer will not open the paper, the code, or any note.
 These adapt the paper-writing prose rules to the rebuttal.
 
 - **No em dashes (U+2014), ever.** Restructure with a comma, semicolon, colon, parenthesis, or a new sentence. En dashes (U+2013) only in numeric ranges; in prose write "to" for a range ("from 12 to 18 percent"). The single exception is inside a verbatim reviewer quote, which is reproduced as written.
-- **No native-speaker-only idioms.** Substitute the literal equivalent: "edge out" to "narrowly beat", "sweet spot" to "best setting", "out of the box" to "without modification", "moving the needle" to "producing measurable improvement", "runs in our favor" to "is better for us", "load-bearing" to "necessary".
 - **Plain-English rephrasing for statistical claims.** Keep the jargon (its absence reads as under-engineered), and attach a plain clause right after it. "significant (McNemar's exact test, p = 2.4e-44), a paired test for whether two methods differ on the same items"; "95% confidence interval [56.7, 63.5], the range the score would fall in across repeated samples"; "p < 0.05, unlikely to arise by chance if the methods were equivalent". Numbers whose meaning is self-evident ("accuracy 72% to 81%") are exempt.
-- **Avoid AI-favored words:** delve, underscore, harness, illuminate, facilitate, bolster, streamline, robust, comprehensive, leverage, "pave the way", "shed light on", "a nuanced understanding", "seamless", "cutting-edge". Prefer plain, direct wording. (Reusing a word the reviewer themselves used, to mirror their vocabulary, is allowed.)
+- **Reusing a word the reviewer themselves used, to mirror their vocabulary, is allowed** even where the wording rules would otherwise replace it.
 - **Complete sentences only.** Every sentence has a subject and a finite verb. No noun-phrase fragment standing in for a sentence, especially at the head of the conventions paragraph. "Conventions used throughout, so every number below is self-contained." is a fragment ("Conventions used throughout" has no verb); write "We use the following conventions throughout, so that every number below is self-contained." A non-native reviewer reads a fragment as a language error and discounts the whole response.
-- **No "pipeline" for an agentic system;** use "workflow", "loop", or "system".
 - **Hyphens only out of necessity:** compound adjectives before their noun ("a well-known result"), disambiguating prefixes ("non-trivial"). Not for `-ly` adverbs ("newly added", not "newly-added") or predicative compounds ("the result is well known").
 - **Commas:** always after an introductory phrase, and before a coordinating conjunction joining two independent clauses, with no length exemption.
 - **Non-essential content:** since dashes are forbidden, choose the wrapper by role: appositive commas for a renaming noun phrase; "namely" or "specifically" for an emphasized instance; "such as" or "including" for an open example list; parentheses for a genuinely skippable side note; a new sentence for a standalone thought.
@@ -148,7 +143,7 @@ A mechanical sweep of each posted file (above the divider), under 30 minutes. Sk
 
 1. **Anonymity:** zero local paths, usernames, or institution names above the divider.
 2. **Dashes:** zero em dashes; en dashes only in numeric ranges. Grep for the glyphs, and separately grep the bold-bullet pattern where a dash hides between bold tokens.
-3. **AI-favored words and idioms:** zero (allowing words the reviewer themselves used).
+3. **Idioms and figurative uses of ordinary words:** zero (allowing words the reviewer themselves used).
 4. **Reviewer-quote audit:** each blockquote is a verbatim substring of the review, allowing marked "..." truncation and standard inner-quote nesting.
 5. **Number audit:** every %, count, and score traces to a row in the Author Notes audit trail.
 6. **Self-containment:** no reference to an external file, note, or path in the posted text, including the `.bib`, experiment files, and the `README`; every number carries its setting.
