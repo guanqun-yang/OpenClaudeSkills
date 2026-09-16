@@ -1,6 +1,6 @@
 ---
 name: humanize
-description: Make Claude-written prose read as human. Budgets and rewrites for the tics that actually show up under measurement - "rather than", definition by negation, copular framing, counting reflexes, em dashes, and bold/table scaffolding. Calibrated on 520K words of Claude prose against register-matched human corpora.
+description: Make Claude-written prose read as human. Budgets and rewrites for the tics that actually show up under measurement - "rather than", definition by negation, copular framing and the "X is Y, and Z is W" couplet, counting reflexes, em dashes, missing commas after openers, and bold/table scaffolding. Calibrated on 520K words of Claude prose against register-matched human corpora.
 ---
 
 # Humanize
@@ -60,7 +60,7 @@ Bullet share itself is fine: Claude runs 38 % of blocks as bullets, human techni
 
 Three fixes, in order of preference.
 
-**Delete it.** Most of the time the rejected alternative is not live for the reader.
+**Delete it.** Most of the time, the rejected alternative is not live for the reader.
 
 > **Don't:** The shorter window strengthens that call rather than weakening it.
 > **Do:** The shorter window strengthens that call.
@@ -96,10 +96,10 @@ Where absence really is the finding, say it once, plainly, and move on. "Prior a
 > **Do:** The follow-up asks whether you know the standard answer breaks, and whether you can say why.
 
 > **Don't:** It is the only option where you can hold six used 7-irons, hit each one, and walk out under USD 100.
-> **Do:** Everywhere else you order blind. There you can hold six used 7-irons, hit each one, and walk out under USD 100.
+> **Do:** Everywhere else, you order blind. There, you can hold six used 7-irons, hit each one, and walk out under USD 100.
 
 > **Don't:** That is the paper's central claim, and the honest form of it is parity.
-> **Do:** The paper claims parity, and that is the honest reading of Table 3.
+> **Do:** The paper claims parity. Table 3 supports that reading.
 
 `which is why` deserves its own mention: it welds a consequence onto a sentence that had already finished. Break it into two sentences or use *so*.
 
@@ -110,14 +110,31 @@ The copula rule above says to prefer a verb. The failure mode it does not catch 
 This one does not show up in any word count, so it survives every other pass in this file. It is also the tic most likely to make a sentence genuinely hard to parse for a reader working in a second language, because the metaphor and the missing agent compound.
 
 > **Don't:** Five label budgets across three datasets, each with a supervised anchor trained at the same budget, place the comparison where annotation cost binds.
-> **Do:** The authors label 1, 5, 10, 50, and 100 percent of the training data. At each budget they also train a plain supervised model.
+> **Do:** The authors label 1, 5, 10, 50, and 100 percent of the training data. At each budget, they also train a plain supervised model.
 
 > **Don't:** N1 carries the argument at 29.3 against 24.0 for the strongest baseline.
-> **Do:** On stage N1 the model reaches 29.3 F1, against 24.0 for the best baseline.
+> **Do:** On stage N1, the model reaches 29.3 F1, against 24.0 for the best baseline.
 
 The test: ask who or what performed the verb. If the answer is a person, a system, a model, a paper, or a table, the sentence is fine. If the answer is an argument, a comparison, an ordering, a budget, or an analysis, rewrite with the real actor in front.
 
 A second pattern travels with it: a short cryptic sentence followed by a colon and a longer sentence that explains it. Split it into two sentences, put the explanation first, and drop the colon.
+
+## 5c. The Copular Couplet
+
+Two short copular clauses joined by *and*, the first stating a fact and the second passing a verdict on it: *The problem is one wrong field, and the fault is mine.* *The fix is small, and the risk is low.* *The answer is no, and the reason is cost.* Section 5 already flags each half. The couplet is worse than the sum, because the balance itself is the tell: it reads as a line composed to be quoted, and Claude produces it as a default way to open or close a paragraph, especially in emails and summaries. It was not measured in the survey; it was added on 16 September 2026 after a reader flagged it in an email draft. Treat the budget as zero.
+
+The test: the sentence has the shape *the N is N, and the N is N* or *N is A, and N is A*, and the two halves could swap places without loss. A sentence-final verdict tail does the same job in one clause: *..., and that is the honest reading*, *..., which is the whole point*, *..., and that is the problem*.
+
+Fix: give the fact a verb and an agent. Then either drop the verdict, because the fact now carries it, or let the verdict be a plain sentence of its own.
+
+> **Don't:** The problem is one wrong field, and the fault is mine.
+> **Do:** When I committed the paper, I entered one field wrong, and that mistake caused everything below.
+
+> **Don't:** The fix is small, and the risk is low.
+> **Do:** The fix changes one line and touches nothing else.
+
+> **Don't:** A rejection would be a usable answer, and silence is the only one I cannot act on.
+> **Do:** I can act on a rejection. Silence gives me nothing to act on.
 
 ## 6. Counting and Absolutes
 
@@ -130,7 +147,7 @@ Concretely: do not announce a count before a list unless the count is load-beari
 
 ## 7. Punctuation That Is Doing Syntax's Job
 
-Em dashes are 17× human technical blogs, and the distribution matters: 59 % of Claude's longer documents contain none at all, while planning notes run 66 per 10 K words. It is a mode, not a constant. When a draft is over budget it is usually over budget badly.
+Em dashes are 17× human technical blogs, and the distribution matters: 59 % of Claude's longer documents contain none at all, while planning notes run 66 per 10 K words. It is a mode, not a constant. When a draft is over budget, it is usually over budget badly.
 
 > **Don't:** Its spread is 63.2 to 64.2 — one point — while Table 2 reports a seed-level standard deviation of 0.5.
 > **Do:** Its spread is 63.2 to 64.2, one point, while Table 2 reports a seed-level standard deviation of 0.5 for the same configuration.
@@ -141,6 +158,16 @@ Em dashes are 17× human technical blogs, and the distribution matters: 59 % of 
 The same applies to the mid-sentence colon (2.2×) and the semicolon (2.6×). Each is a device for cramming a second clause into a sentence that had finished its job. Ask whether the material after the mark is a gloss (use a comma), a consequence (use a new sentence), or a list (keep the colon).
 
 Arrows in running prose (`x -> y`, `→`) read as notation. Keep them in tables, diagrams, and pipelines; spell them out in sentences.
+
+### 7b. The Comma After an Opener
+
+Claude drops the comma after an introductory phrase: *As a result the chairs see the wrong forum.* *On 11 September 2026 I asked the General Chair.* *In the three runs reported the gap closes.* Put the comma in, every time:
+
+- after a conjunctive adverb or a sentence adverb: *As a result,* *However,* *In other words,* *For example,* *In practice,*
+- after an introductory phrase that carries a date, a place, a condition, or a scope: *On 11 September 2026,* *At each budget,* *Under the signed contract,* *For a week,*
+- after a dependent clause: *If the folder does not exist,* *When a draft is over budget,*
+
+Some style guides allow the comma to be omitted after a very short prepositional phrase (*In 2024 we moved*). Do not take that permission. The readers of these documents are often parsing in a second language, and the comma marks where the subject of the sentence begins; without it, *On 11 September 2026 I asked* makes the reader find the boundary themselves. This rule was not measured in the survey; it was added on 16 September 2026 from the same reader feedback as section 5c.
 
 ## 8. Certainty and Conversational Repair
 
@@ -190,11 +217,12 @@ Given a finished draft, work in this order. Highest yield first, and each pass i
 1. Count em dashes, `rather than`, semicolons, and arrows. Any over budget gets fixed before anything else. These are the cheapest and most visible wins.
 2. Strip bold to terms at first use. Convert any all-bold-lead-in bullet list to plain sentences or to one real table.
 3. Merge one-sentence paragraphs into their neighbours until the mean is three or more sentences.
-4. Read only the sentences that contain `is`, `are`, `was`, `were`. Rewrite the ones where a real verb was available (§5).
+4. Read only the sentences that contain `is`, `are`, `was`, `were`. Rewrite the ones where a real verb was available (§5). While there, catch every *N is N, and N is N* couplet and every *, and that is* tail (§5c).
 5. Read only the sentences containing `no`, `not`, `never`, `none`, `nothing`. Keep the ones that correct a belief the reader actually holds (§4).
 6. Delete every count that is not load-bearing (§6).
 7. Add the hedges and attributions back where the claim rests on one source (§8).
 8. Read the first sentence of each paragraph in sequence. If they form a list of definitions, the draft is still a glossary, not an argument.
+9. Search for sentence openers (`As a result`, `In other words`, `On <date>`, `At <time>`, `If`, `When`, `Under`) and confirm each is followed by a comma (§7b).
 
 A quick numeric check on a file, if useful:
 
