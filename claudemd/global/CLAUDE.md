@@ -54,6 +54,10 @@ Every reply, note, and document is written for one reader.
 - Never call an agentic system a "pipeline"; write "workflow", "loop", or "system".
 - The famous AI words (delve, moreover, leverage, robust) are not the problem. Spend no effort on them.
 
+## Email
+
+- The subject line is in Title Case, every major word capitalized: *Rebuttal Draft for Reviewer 2 Ready for Review*. Never sentence case with only the first word capitalized: *Rebuttal draft for reviewer 2 ready for review*.
+
 ## Email Search (`seek-email`)
 
 - **Sync before searching.** The index is a snapshot of Thunderbird's database, so mail that arrived since the last build is invisible to search. Call `sync_index` (or check `get_index_status` first) before the first `search_emails` of a session. A full rebuild takes under a minute.
