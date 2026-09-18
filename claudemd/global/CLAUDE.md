@@ -52,6 +52,7 @@ Every reply, note, and document is written for one reader.
 - Do not count ("all three", "every") unless the count carries the point.
 - Prefer a verb that says what a thing does to a copula that says what it is.
 - Never call an agentic system a "pipeline"; write "workflow", "loop", or "system".
+- Structural metaphors are not technical terms. Write "requires" for *gated*, "necessary" for *load-bearing*, "merged" or "done" for *landed*, "found" for *surfaced*, "passes" for *clears* or *survives*, "identical" for *byte-identical*, and X for *the honest X*. Do not end a clause on *, not Y* unless the reader believes Y.
 - The famous AI words (delve, moreover, leverage, robust) are not the problem. Spend no effort on them.
 
 ## Email

@@ -1,6 +1,6 @@
 ---
 name: humanize
-description: Make Claude-written prose read as human. Budgets and rewrites for the tics that actually show up under measurement - "rather than", definition by negation, copular framing and the "X is Y, and Z is W" couplet, generic nouns where a name exists, counting reflexes, em dashes, missing commas after openers, and bold/table scaffolding - plus the tone failures the counts miss: rhetoric, the writer's own grievance, and ultimatums in requests. Calibrated on 520K words of Claude prose against register-matched human corpora.
+description: Make Claude-written prose read as human. Budgets and rewrites for the tics that actually show up under measurement - "rather than" and "X, not Y", the Claudish lexicon (gated, load-bearing, landed, the honest X), definition by negation, copular framing and the "X is Y, and Z is W" couplet, generic nouns where a name exists, counting reflexes, em dashes, missing commas after openers, and bold/table scaffolding - plus the tone failures the counts miss: rhetoric, the writer's own grievance, and ultimatums in requests. Calibrated on 520K words of Claude prose against register-matched human corpora.
 ---
 
 # Humanize
@@ -24,7 +24,7 @@ Under measurement, none of the internet's AI-slop vocabulary appears in Claude's
 | *, ensuring / allowing / enabling* | 0.02 | 0.03 | 0.07 |
 | *myriad / tapestry / testament to* | 0.00 | 0.00 | 0.00 |
 
-Spending attention here buys nothing. The real tics are syntactic and structural, and they are all in the sections below.
+Spending attention here buys nothing. That list describes another model's era. Claude has a vocabulary of its own, structural and process metaphors such as *gated*, *load-bearing*, *landed*, and *the honest X*, and that one does fire, at 5 to 20 times the human rate (§6b). The rest of the tics are syntactic and structural, and they are in the sections below.
 
 ## 2. Budget Card
 
@@ -33,6 +33,8 @@ Per 1 000 words of finished prose. The middle column is what Claude does unpromp
 | Feature | Claude does | Budget | Human baseline |
 |---|---|---|---|
 | `rather than` | 1.7 | **≤ 0.3** (about one per document) | 0.19 |
+| `X, not Y` trailing contrast (*decisions, not oversights*) | 0.23 | **≤ 0.1** | 0.01 |
+| Claudish lexicon (§6b), outside defined technical use | 1.0 | **0** | 0.07 |
 | Negation frames (`not a`, `with no`, `there is no`, `none of`, `at all`) | 3.3 | **≤ 1.0** | 0.8 |
 | Copular identification (`X is the Y`, `which is why`, `is what`, `is the only`) | 6.1 | **≤ 3.0** | 1.9 |
 | Counting absolutes (`every`, `all three`, `exactly`, `the two`) | 3.7 | **≤ 1.5** | 1.1 |
@@ -73,6 +75,14 @@ Three fixes, in order of preference.
 **Name the choice, not the rejection.** If two options are genuinely on the table, say who prefers which and why, in the ordinary way: *A over B*, *A instead of B*, *we picked A because*.
 
 The same reflex hides in `not X but Y`, `less about X than Y`, `it's not that X, it's that Y`. All of them front-load a negative the reader has to hold before the positive arrives.
+
+**The trailing form is the most common of all.** `X, not Y` tacked onto the end of a clause appears in 29 % of Claude's documents and 5 % of human ones, at 18× the rate per word: *These were decisions, not oversights.* *The study is proposed, not done.* *The binding resource is a surrogate, not feedback.* Each ends the sentence on a rejected alternative the reader had not raised. State X with a verb and let Y go, unless the reader believes Y.
+
+> **Don't:** The human validation study is proposed, not done, and its cost estimate assumes two annotators.
+> **Do:** The human validation study is still a proposal. Its cost estimate assumes two annotators.
+
+> **Don't:** These were decisions, not oversights.
+> **Do:** We chose each of these deliberately.
 
 ## 4. Definition by Negation
 
@@ -121,11 +131,11 @@ A second pattern travels with it: a short cryptic sentence followed by a colon a
 
 ## 5c. The Copular Couplet
 
-Two short copular clauses joined by *and*, the first stating a fact and the second passing a verdict on it: *The problem is one wrong field, and the fault is mine.* *The fix is small, and the risk is low.* *The answer is no, and the reason is cost.* Section 5 already flags each half. The couplet is worse than the sum, because the balance itself is the tell: it reads as a line composed to be quoted, and Claude produces it as a default way to open or close a paragraph, especially in emails and summaries. It was not measured in the survey; it was added on 16 September 2026 after a reader flagged it in an email draft. Treat the budget as zero.
+Two short copular clauses joined by *and*, the first stating a fact and the second passing judgment on it: *The problem is one wrong field, and the fault is mine.* *The fix is small, and the risk is low.* *The answer is no, and the reason is cost.* Section 5 already flags each half. The couplet is worse than the sum, because the balance itself is the tell: it reads as a line composed to be quoted, and Claude produces it as a default way to open or close a paragraph, especially in emails and summaries. It was not measured in the survey; it was added on 16 September 2026 after a reader flagged it in an email draft. Treat the budget as zero.
 
-The test: the sentence has the shape *the N is N, and the N is N* or *N is A, and N is A*, and the two halves could swap places without loss. A sentence-final verdict tail does the same job in one clause: *..., and that is the honest reading*, *..., which is the whole point*, *..., and that is the problem*.
+The test: the sentence has the shape *the N is N, and the N is N* or *N is A, and N is A*, and the two halves could swap places without loss. A sentence-final judgment tail does the same job in one clause: *..., and that is the honest reading*, *..., which is the whole point*, *..., and that is the problem*.
 
-Fix: give the fact a verb and an agent. Then either drop the verdict, because the fact now carries it, or let the verdict be a plain sentence of its own.
+Fix: give the fact a verb and an agent. Then either drop the judgment, because the fact now carries it, or let it be a plain sentence of its own.
 
 > **Don't:** The problem is one wrong field, and the fault is mine.
 > **Do:** When I committed the paper, I entered one field wrong, and that mistake caused everything below.
@@ -161,6 +171,8 @@ Anaphora (a word repeated across clauses: *Silence gives me nothing to act on, a
 
 The test: would you say the sentence, in those words, across a table to the reader? If it would sound rehearsed, it is rhetoric. This section was added on 16 September 2026 after a draft that passed every budget was read by its recipient's peer as an ultimatum.
 
+One closer has a measurable shape: a short sentence beginning *That is* or *That matters* that ends the paragraph on a judgment of what came before. *That is the price of a stated error rate.* *That is the wrong way to learn it.* *That is deliberate.* It appears in 7 % of Claude's documents and 1 % of human ones. Either the paragraph already made the point, in which case delete the line, or it did not, in which case the line is doing the paragraph's work in a fragment and the paragraph needs the sentence in full.
+
 ## 5f. The Writer's Sentences
 
 Some sentences exist to record the writer's state, and the metrics cannot see them: *both messages are still unanswered*, *for a week I have received silence*, *I am copying X so that everyone reads the same message*, *I am copying Y because Z*, *I would prefer to stop writing to the committee*. Each tells the reader how the writer feels about the history. None gives the reader anything they need in order to act, and to a reader with power over the outcome each one reads as an accusation entered into the record.
@@ -179,7 +191,32 @@ Added on 16 September 2026 from the same draft as section 5e.
 > **Don't:** Three properties make it work, and all three are worth protecting. Every post is a folder, not a file.
 > **Do:** A post is a folder, with the body in `README.md` inside it. That is what makes the other two properties possible.
 
-Concretely: do not announce a count before a list unless the count is load-bearing. Do not close a list by referring back to its cardinality (*all three*, *both of these*, *each of the four*). Do not write *every* where *a* or *the* will do.
+Concretely: do not announce a count before a list unless the count itself is the point. Do not close a list by referring back to its cardinality (*all three*, *both of these*, *each of the four*). Do not write *every* where *a* or *the* will do.
+
+## 6b. The Claudish Lexicon
+
+Claude describes ordinary relationships with structural and process metaphors: a requirement becomes a *gate*, a merge *lands*, an essential part is *load-bearing*, a finding is *surfaced*, a plain statement is *the honest X*. None of these words is wrong on its own. The tell is frequency and spread, measured on 490 K words of Claude markdown against 360 K words of human technical blogs on the same subjects. The last column is the share of documents that use the term at least once; a topic word clusters in a few files, a tic appears everywhere.
+
+| Term | Claude /10 K | Human /10 K | Claude docs | Human docs | Write instead |
+|---|---|---|---|---|---|
+| *clears*, *survives*, *implicates* (a test, a check) | 1.0 | 0.0 | 17 % | 0 % | passes, holds, points to |
+| *headline* (number, figure, result) | 0.8 | 0.0 | 17 % | 0 % | main, reported |
+| *load-bearing* | 0.8 | 0.0 | 12 % | 0 % | necessary, central, the one the claim rests on |
+| *the honest X*, *one honest caveat* | 0.6 | 0.0 | 10 % | 0 % | X; one caveat |
+| *landed*, *lands* | 0.5 | 0.06 | 10 % | 2 % | merged, done, arrived |
+| *gated*, *gate on*, *X-gated* | 1.3 | 0.1 | 9 % | 2 % | requires, blocked until, only after |
+| *spine*, *seam*, *substrate*, *scaffold* | 2.1 | 0.1 | 8 % | 2 % | name the actual component |
+| *provenance*, *lineage* | 0.5 | 0.0 | 7 % | 0 % | where it came from, source |
+| *cleanly*, *byte-identical* | 0.3 | 0.0 | 7 % | 0 % | drop it; identical |
+| *the verdict*, *the smoking gun* | 0.4 | 0.0 | 6 % | 0 % | the conclusion; the evidence |
+| *handoff* | 0.7 | 0.0 | 4 % | 0 % | transfer, the point where A passes to B |
+| *drift*, *stale* | 5.1 | 0.1 | 20 % | 6 % | diverge, change over time; outdated |
+
+Three of these words fail the test only partly. *Drift* and *stale* were half topic in the sample (one project was about drift streams); *surface* as a verb (17 % vs 10 %) and *boundary* (22 % vs 13 %) are used by human engineers too and are not listed. *Canonical*, *the key distinction*, and *in other words* were tested and sit at or below the human rate.
+
+Two rules follow. Keep a term when it is the defined technical word in the document's domain (*stale cache*, *canonical URL*, a *gate* in a workflow engine); replace it when it is a metaphor for an ordinary relationship. And do not let the instructions seed the words: this file and its neighbours used *load-bearing* twenty times and *verdict* eleven before the count was run, and Claude reads those files every session.
+
+The pattern names come from the `claudish` dictionary and its Claudish-to-English spec (programasweights/claudish, MIT), which describe the dialect from public Claude Code transcripts; the rates are from this repo's corpus.
 
 ## 7. Punctuation That Is Doing Syntax's Job
 
@@ -222,7 +259,7 @@ So the correction is *not* "be more direct". It is the opposite:
 - Use *usually*, *often*, *tends to* when the claim is a tendency. Claude states tendencies as laws.
 - Let *But* start a sentence. Let *In other words* restate something the reader may not have caught the first time.
 - Attribute. *The authors argue*, *the docs claim*, *I could not reproduce* all carry more information than a flat assertion does.
-- In a request to someone senior, or to anyone who can refuse, the softeners are load-bearing. Phrase the ask as a question with room to decline: *Could you please confirm whether you approve…*, *or let us know how you would like to proceed*. A flat statement of the two outcomes (*either A happens or B happens*) is an ultimatum however plain the words, and the short declaratives this file otherwise favors make it worse. The plain-sentence rules in sections 3 to 7 shape the facts; the ask itself stays conditional.
+- In a request to someone senior, or to anyone who can refuse, the softeners are necessary. Phrase the ask as a question with room to decline: *Could you please confirm whether you approve…*, *or let us know how you would like to proceed*. A flat statement of the two outcomes (*either A happens or B happens*) is an ultimatum however plain the words, and the short declaratives this file otherwise favors make it worse. The plain-sentence rules in sections 3 to 7 shape the facts; the ask itself stays conditional.
 
 ## 9. Page Furniture
 
@@ -251,12 +288,13 @@ Trade and narrative prose is the one place where the punctuation budget loosens:
 
 Given a finished draft, work in this order. Highest yield first, and each pass is mechanical enough to do without re-reading for meaning.
 
-1. Count em dashes, `rather than`, semicolons, and arrows. Any over budget gets fixed before anything else. These are the cheapest and most visible wins.
+1. Count em dashes, `rather than`, `, not `, semicolons, and arrows. Any over budget gets fixed before anything else. These are the cheapest and most visible wins.
+1b. Search for the lexicon in §6b (`gated`, `load-bearing`, `landed`, `surfaced`, `spine`, `seam`, `scaffold`, `provenance`, `handoff`, `honest`, `clears`, `survives`, `headline`, `cleanly`, `byte-identical`, `verdict`, `drift`, `stale`). Replace each that is not the document's own technical term.
 2. Strip bold to terms at first use. Convert any all-bold-lead-in bullet list to plain sentences or to one real table.
 3. Merge one-sentence paragraphs into their neighbours until the mean is three or more sentences.
 4. Read only the sentences that contain `is`, `are`, `was`, `were`. Rewrite the ones where a real verb was available (§5). While there, catch every *N is N, and N is N* couplet and every *, and that is* tail (§5c).
 5. Read only the sentences containing `no`, `not`, `never`, `none`, `nothing`. Keep the ones that correct a belief the reader actually holds (§4).
-6. Delete every count that is not load-bearing (§6).
+6. Delete every count that is not itself the point (§6).
 7. Add the hedges and attributions back where the claim rests on one source (§8).
 8. Read the first sentence of each paragraph in sequence. If they form a list of definitions, the draft is still a glossary, not an argument.
 9. Search for sentence openers (`As a result`, `In other words`, `On <date>`, `At <time>`, `If`, `When`, `Under`) and confirm each is followed by a comma (§7b).
@@ -270,6 +308,8 @@ A quick numeric check on a file, if useful:
 w=$(wc -w < FILE)
 rg -o -- '—' FILE | wc -l          # budget: w/1000 * 1
 rg -oi -- 'rather than' FILE | wc -l  # budget: w/1000 * 0.3
+rg -o -- '\w+, not \w+[.,]' FILE | wc -l  # budget: w/1000 * 0.1
+rg -oiw -- 'gated|load-bearing|landed|surfaced|spine|seam|scaffold\w*|provenance|handoff|honest|clears|survives|headline|cleanly|byte-identical|verdict' FILE | wc -l  # budget: 0 outside technical use
 rg -o -- '\*\*[^*]+\*\*' FILE | wc -l # budget: 15 per 100 prose blocks
 ```
 
