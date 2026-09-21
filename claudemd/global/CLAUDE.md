@@ -18,6 +18,11 @@
 - Do not commit unless explicitly asked.
 - Commit messages explain *why*, not *what*.
 
+## Shell
+
+- Prefer the Rust-based replacements over the default utilities whenever they are installed: `rg` for `grep`, `fd` for `find`, `bat` for `cat` and `less`, `eza` for `ls` and `tree`, uutils `coreutils` for the GNU or BSD coreutils. Check with `command -v` once per session; fall back to the classic tool when the replacement is absent.
+- Run them with their non-interactive flags (`bat --plain --paging=never`, `eza --no-icons --color=never`, `rg --no-heading`), so no pager or color code reaches the transcript. The `modern-cli` skill lists the flags for each tool.
+
 ## The Reader
 
 Every reply, note, and document is written for one reader.
