@@ -30,6 +30,7 @@ Single-file prompts under `commands/`; `commands/<name>.md` becomes `/<name>` on
 | Command | What it does |
 |---|---|
 | `cwd` | `/cwd <folder>` sets, or creates, the working folder for the current task inside the repository. Type `@` to autocomplete an existing folder name. |
+| `ship` | `/ship [why]` stages every change in the current repository, commits it with a message that explains why (the diff already shows what), and pushes. It refuses to add files that look like secrets or exceed 10 MB, runs a pre-commit step only if the repository documents one, and never force-pushes. |
 
 ## Installation
 
@@ -38,7 +39,7 @@ Copy the directories you want into your project:
 ```bash
 mkdir -p .claude/skills .claude/commands
 cp -r skills/modern-cli .claude/skills/
-cp commands/cwd.md .claude/commands/
+cp commands/cwd.md commands/ship.md .claude/commands/
 cp claudemd/paper-writing/CLAUDE.md ./CLAUDE.md
 ```
 
