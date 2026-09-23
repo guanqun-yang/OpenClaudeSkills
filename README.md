@@ -11,6 +11,7 @@ This repository is a curated public mirror — a private working repo holds the 
 | `academic-graphic-design` | Style guide for publication-quality figures and tables: color palettes, typography, layout, inline annotations. |
 | `backup` | Snapshots a LaTeX manuscript into `fallback/<tag>/` with an auto-incremented version tag and a manifest row, before any significant edit. |
 | `detect-prompt-injection` | Scans PDFs for hidden prompt-injection text (zero-width glyphs, `ActualText` entries) before an LLM reads them. Bundles its own scanners. |
+| `email` | Writes or revises an email so that it gets a reply, against budgets measured on real mailboxes in five peer-reviewed studies: a 40 to 50 word body, one person on the To line, one answerable question, a short subject, no manual line breaks, no font settings. Covers cold outreach and CAN-SPAM. |
 | `en-zh-translation` | Practices for English → Simplified Chinese prose translation: terminology consistency, sentence restructuring, punctuation, bilingual LaTeX typesetting. |
 | `humanize` | Makes Claude-written prose read as human, with per-1,000-word budgets for the tics that actually show up under measurement (`rather than`, negation frames, em dashes, bold and table scaffolding) and rewrites for each. |
 | `latex-paper-project` | File layout and editing conventions for LaTeX paper projects (`main.tex`, `sections/`, `figures/`, `tables/`, `zotero.bib`). |
