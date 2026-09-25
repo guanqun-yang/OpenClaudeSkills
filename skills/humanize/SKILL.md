@@ -301,6 +301,7 @@ Given a finished draft, work in this order. Highest yield first, and each pass i
 10. Search for `the platform`, `the mechanism`, `the tool`, `the system`, `the committee`, `the change`, `the action`, and for `it`, `this`, `that`, `they` at the start of a sentence. Replace each with the name where one exists (§5d).
 11. Read for repeated words across clauses, *X. Not Y.* pairs, and quotable closing lines; cut them (§5e). Then delete every sentence that records the writer's state or explains the copy list (§5f).
 12. Read the whole document once as the recipient. If the ask is to someone who can refuse, confirm it is phrased as a question with room to decline (§8).
+13. Hand the file to `Skill(skill="vale")` for the mechanical pass: doubled words, *then* for *than*, non-words, missing commas after openers, spelling against the project vocabulary. It applies the fix each rule defines and lists what needs judgment, which is cheaper than reading for those errors again. Skip it when the text is not saved to a file, and when Vale is not installed report that once rather than holding the draft.
 
 A quick numeric check on a file, if useful:
 

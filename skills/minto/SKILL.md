@@ -80,6 +80,12 @@ When the Subject or Question refuses to come clear:
 
 Then return to the top-down list at step 6.
 
+### Finishing
+
+Structure is settled once the prose exists. One pass follows it, on any draft saved to a file: `Skill(skill="humanize")` for the wording. Its own last step hands the file to `vale` for the mechanics, so the linter runs once, at the end of the chain, and this skill does not call it separately.
+
+Skip the pass for an outline that stays in the reply.
+
 ## 3. Introductions
 
 An introduction reminds; it does not inform. Everything in it is something the reader already knows or will accept as plainly true. Evidence, tables, and new claims belong in the body. All history and chronology belong in the introduction, because the body can hold only ideas, and a sequence of events is not an idea.
@@ -246,6 +252,8 @@ Audit list, in order of damage done:
 10. Action items without an end product; situation items with no shared subject, predicate, or judgment.
 11. News: a true fact that supports no point above it.
 12. A Key Line point that arrives without its own short introduction.
+
+Finish a rebuilt draft the same way as a new one, through `humanize`, as in *Finishing* above.
 
 ## 9. Where the Pyramid Lands
 

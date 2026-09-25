@@ -76,6 +76,42 @@ See the [skills documentation](https://docs.claude.com/en/docs/claude-code/skill
 
 Rule of thumb: if you would be annoyed when Claude forgets a rule, it belongs in `CLAUDE.md`. If it is a recipe you reach for occasionally, make it a skill.
 
+## How the pieces fit together
+
+```mermaid
+flowchart TD
+    subgraph always["Always loaded, every turn"]
+        G["~/.claude/CLAUDE.md<br/>reader, replies, wording"]
+        P["project CLAUDE.md<br/>coding · paper-writing · blog · poster · rebuttal"]
+        G --- P
+    end
+
+    subgraph invoked["Loaded only when invoked"]
+        M["minto<br/>what the document says, in what order"]
+        H["humanize<br/>wording and tone"]
+        V["vale<br/>mechanics"]
+        M -->|"finished prose"| H
+        H -->|"saved file"| V
+    end
+
+    BIN(["vale binary<br/>Vale + Harper rules"])
+    V --> BIN
+    BIN -->|"alerts as JSON"| V
+
+    always -.->|"rules hold inside every skill"| invoked
+```
+
+The two boxes are different kinds of thing. The top one is rules, read on every
+turn whether or not you ask for them. The bottom one is procedures: only each
+skill's `description` sits in context, and the body arrives when the skill is
+called.
+
+The writing chain runs down the bottom box. `minto` settles the structure and
+hands the prose to `humanize`; `humanize` settles the wording and, as its last
+step, hands the saved file to `vale`; `vale` shells out to the linter and reads
+the alerts back as JSON. Each stage calls the next one only, so the linter runs
+once per draft, which matters because it re-raises alerts you deliberately left.
+
 ## How `CLAUDE.md` layers
 
 Claude Code loads every `CLAUDE.md` it can find, in full, at the start of each session: `~/.claude/CLAUDE.md` first, then each `CLAUDE.md` from the working directory up to `/`. The files concatenate; a lower file never overrides a higher one, and a rule that appears twice is read twice. The presets here are meant for two layers:

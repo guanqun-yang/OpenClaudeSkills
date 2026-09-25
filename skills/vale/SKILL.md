@@ -77,7 +77,7 @@ vale --no-global --output=JSON <path> > /tmp/vale.json
 
 **Step 4: read for the right column of §1.** Those errors will not appear in any Vale output. Read the manuscript once looking only for them, which is a narrower job than reading for everything.
 
-**Step 5: re-run.** The count should drop and nothing new should appear.
+**Step 5: re-run.** The count should drop and nothing new should appear. Run the linter once per draft. It is idempotent on text you fixed, but it re-raises every alert you decided to leave, with no memory of the decision, so a second pass tends to undo a considered judgment.
 
 **Step 6: report.**
 
