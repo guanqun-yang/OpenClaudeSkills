@@ -1,13 +1,13 @@
 ---
 name: email
-description: Write or revise an email so it gets a reply. Budgets from five studies of real mailboxes: 40 to 50 word body, one name on the To line, one answerable question, short subject, no manual line breaks, no font settings. Work, academic, and cold outreach.
+description: Write or revise an email so it gets a reply. Targets from five studies of real mailboxes, a 40 to 50 word body, one name on the To line, one answerable question, short subject, no manual line breaks, no font settings. The word count is a goal that keeps the writing focused, never a cap to trim a necessary sentence to. Work, academic, and cold outreach.
 ---
 
 # Email
 
 Two paths. Pick the one that matches what you were given.
 
-- **Compose.** You were told what the email must achieve. Work through section 4, then write to the budgets in section 3.
+- **Compose.** You were told what the email must achieve. Work through section 4, then write toward the targets in section 3.
 - **Revise.** You were given a draft. Run section 14 in order and report what you changed and which rule drove it.
 
 Both paths end at the same place: an email whose reader can act on it in under ten seconds.
@@ -49,11 +49,15 @@ Making a message feel important is not the same as getting it answered. The four
 
 ## 3. Budget Card
 
+**Read the word count as a target, not a limit.** Forty words is where reply rate peaks in the data, but length is a symptom of focus rather than a cause of replies: emails near 40 words tend to ask one thing of one person, and that is what gets answered. A 200-word email cut to 40 by deleting its context is still unfocused, and now unanswerable as well. Section 15 records that a one-word body did worse than a 200-word one.
+
+So use the number the way it earns its place. Before writing, it is a discipline that stops the draft sprawling. After writing, it is a signal: over budget means look for what the reader does not need, and if every remaining sentence is load-bearing, send the longer email. Never delete a fact, a number, or the question to reach a count.
+
 Per email. The Chinese column is a content-density conversion, not a separate measurement.
 
 | Element | Budget (English) | Budget (Chinese) | Why |
 |---|---|---|---|
-| Body | 40 to 50 words | 70 to 90 characters | Reply rate peaks near 40 words; the median reply people write is 43 words |
+| Body | 40 to 50 words, as a target | 70 to 90 characters, as a target | Reply rate peaks near 40 words; the median reply people write is 43 words |
 | Subject | 3 to 5 words | 10 to 15 characters | Reply rate falls as the subject lengthens |
 | Names on the To line | 1 | 1 | One recipient +20%, a list -18% |
 | Paragraphs | at most 3 | at most 3 | Over half of all reading events last under 10 seconds |
@@ -183,7 +187,7 @@ The practical instruction is to write whenever, and schedule the send. Every maj
 
 Same rules, one third the expected return: 2.26% reply rate to an external address against 7.76% internal. Set that expectation with the user before drafting.
 
-What is worth spending the 40-word budget on, in order:
+What the 40 words are best spent on, in order:
 
 1. One sentence saying why you are writing to this person specifically, naming the paper, the repository, the talk, or the shared contact. A reason that would fit any recipient is the same as no reason.
 2. One question they can answer from what they already know, with no homework attached.
@@ -239,7 +243,7 @@ Work in this order, largest effect first. Each step is mechanical. Report each c
 
 1. Count the names on the To line. More than one, and the reply probability drops 18%. Move everyone who does not have to act to Cc. If two people must each act, split the message.
 2. Find the question mark. Exactly one, in the last paragraph, answerable in one sentence without opening the attachment. None means the draft is a status update and will not get a reply; say so.
-3. Count the body words, excluding greeting and sign-off. Budget is 40 to 50 English words, or 70 to 90 Chinese characters. Cut to the number before anything else; the first pass usually removes a third.
+3. Count the body words, excluding greeting and sign-off, and read the number as a diagnosis rather than a quota. The target is 40 to 50 English words, or 70 to 90 Chinese characters. Over it, ask of each sentence whether the recipient needs it to answer: background they already have, the history of the problem, and hedging all go. The first pass usually removes a third that way. If what remains is still long and every sentence is load-bearing, leave it long and say why in your report. A draft that reaches 40 words by cutting the number the reader needs, or by compressing the question into a hint, is worse than the 90-word version it replaced.
 4. Read the subject alone. Three to five words, truthful, no fabricated `Re:`, and it names the thing rather than promising news.
 5. Confirm the greeting and sign-off are present, one line each. Restore them if a previous edit removed them for brevity.
 6. Move every number the recipient needs in order to answer out of the attachment and into the body. If the attachment then holds nothing they need, drop it and save about 24% of the reply time.
@@ -255,7 +259,7 @@ A mechanical check on a draft file, if useful:
 ```bash
 f=draft.txt
 
-wc -w < "$f"                    # body budget: 40-50 English words
+wc -w < "$f"                    # body target: 40-50 English words, not a cap
 python3 -c "import re,sys;print(len(re.sub(r'\s','',open(sys.argv[1]).read())))" "$f"   # Chinese: 70-90
 
 rg -o '\?' "$f" | wc -l         # expect exactly 1
@@ -273,6 +277,7 @@ rg -i '^subject:.*\bre:' "$f"   # a fabricated Re: on a first message
 - Do not promise a reply. The measured baseline is 6% to 8%, and recipients judge 64% of their mail as needing no answer. A good rewrite improves the odds and does not create an obligation.
 - Do not read the correlations as causes. Four of the five studies are observational. "Messages near 40 words have the highest reply rate" is supported; "shortening this message to 40 words will raise its reply rate" is an extrapolation. Long messages and low reply rates share causes, such as being complicated or being an announcement.
 - Do not cut below the budget. A one-word body had a 4.65% reply rate, lower than a 200-word one. Too short fails for the opposite reason: the reader cannot tell what is being asked.
+- Do not trim a message to fit the count. The number describes where focused emails tend to land, and the writing is not improved by forcing a message onto it. When the content genuinely needs 90 words, send 90 words; when it needs 400, it is a document, a meeting, or two emails, and say which. Report the count you landed on and why, rather than quietly sacrificing a sentence the reader needed.
 - Do not delete the greeting. It is the one piece of apparent padding the evidence defends.
 - Do not spend the conversation on timing or fonts. They are the two smallest factors on the list, and fonts are not a factor at all.
 - Do not over-apply the samples. The corporate corpus is English mail from a US technology company in 2000 and 2001, before smartphones; one dataset is personal rather than work mail; one is a 124-person self-report survey, where what people say they do differs from what they do; one is a 38-person laboratory simulation. None of them measured present-day Chinese workplace email.
