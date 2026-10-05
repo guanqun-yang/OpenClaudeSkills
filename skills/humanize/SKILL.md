@@ -1,6 +1,6 @@
 ---
 name: humanize
-description: Make Claude-written prose read as human. Budgets and rewrites for the tics that actually show up under measurement - "rather than" and "X, not Y", the Claudish lexicon (gated, load-bearing, landed, the honest X), definition by negation, copular framing and the "X is Y, and Z is W" couplet, generic nouns where a name exists, counting reflexes, em dashes, missing commas after openers, and bold/table scaffolding - plus the tone failures the counts miss: rhetoric, the writer's own grievance, and ultimatums in requests. Calibrated on 520K words of Claude prose against register-matched human corpora.
+description: Make Claude-written prose read as human. Budgets and rewrites for the tics that actually show up under measurement - "rather than" and "X, not Y", the Claudish lexicon (gated, load-bearing, landed, the honest X), definition by negation, copular framing and the "X is Y, and Z is W" couplet, generic nouns where a name exists, counting reflexes, em dashes, missing commas after openers, and bold/table scaffolding - plus the tone failures the counts miss, namely rhetoric, the writer's own grievance, and ultimatums in requests. Calibrated on 520K words of Claude prose against register-matched human corpora.
 ---
 
 # Humanize
