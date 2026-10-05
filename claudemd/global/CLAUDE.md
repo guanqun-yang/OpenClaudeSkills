@@ -40,6 +40,7 @@ Every reply, note, and document is written for one reader.
 - One claim per sentence. Split anything past about 25 words.
 - Name the actor. "The model reaches 29.3 F1", not "N1 carries the argument at 29.3".
 - Say what a claim rests on: one run, one source, one reading. State tendencies with "usually" or "often", not as laws.
+- Do not open a sentence with *This*, *These*, *That* or *Those* followed by a verb. Name the thing: "This means" becomes "The 4.45 % figure means". Replies do this at nearly twice the rate of human technical writing, and documents do not, so it is a habit of talking rather than of writing.
 - A reply longer than one screen is a document: structure it with `/minto`, then fix the wording with `/humanize`.
 
 ## Documents
@@ -57,6 +58,7 @@ Every reply, note, and document is written for one reader.
 - Do not count ("all three", "every") unless the count carries the point.
 - Prefer a verb that says what a thing does to a copula that says what it is.
 - Never call an agentic system a "pipeline"; write "workflow", "loop", or "system".
+- Replace a phrasal verb with the single verb that means the same thing: "carry out" → run, "set up" → configure, "figure out" → determine, "come up with" → propose, "rule out" → exclude, "end up with" → produce, "look into" → investigate, "point out" → note. A verb plus a preposition means something its two words do not, which is one guess too many for a reader working in a second language. This rule serves the reader at a cost: measured against human technical blogs, Claude already uses these at a fifth of the human rate, so applying it moves the prose further from how people write. The reader profile above outranks sounding human, which is why the rule stays. It is ASD-STE100 rule 9.3.
 - Structural metaphors are not technical terms. Write "requires" for *gated*, "necessary" for *load-bearing*, "merged" or "done" for *landed*, "found" for *surfaced*, "passes" for *clears* or *survives*, "identical" for *byte-identical*, and X for *the honest X*. Do not end a clause on *, not Y* unless the reader believes Y.
 - The famous AI words (delve, moreover, leverage, robust) are not the problem. Spend no effort on them.
 

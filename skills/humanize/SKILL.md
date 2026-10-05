@@ -52,7 +52,7 @@ Page furniture, per 100 prose blocks (a block is one paragraph or one bullet):
 | Table lines | 38 | **≤ 5** | 0.2–0.9 |
 | Bullets with a bold lead-in | 25 % of bullets | **≤ 10 %** | rare |
 | One-sentence paragraphs | 41 % | **≤ 20 %** | — |
-| Mean sentences per paragraph | 2.1 | **≥ 3.0** | — |
+| Mean sentences per paragraph | 2.1 | **≥ 3.0**, and at most 6 | — |
 
 Bullet share itself is fine: Claude runs 38 % of blocks as bullets, human technical bloggers run 44 %. Cut the bold and the tables, not the lists.
 
@@ -214,6 +214,8 @@ Claude describes ordinary relationships with structural and process metaphors: a
 
 Three of these words fail the test only partly. *Drift* and *stale* were half topic in the sample (one project was about drift streams); *surface* as a verb (17 % vs 10 %) and *boundary* (22 % vs 13 %) are used by human engineers too and are not listed. *Canonical*, *the key distinction*, and *in other words* were tested and sit at or below the human rate.
 
+Noun stacks are the same habit in another form. *Approval-gated release path* makes the reader work out which of three modifiers attaches to *path*, and *the release requires approval* is the sentence it was hiding. Hyphenated compounds run 15.1 per 10 K words against 11.6 in human blogs, so this is a weak signal on its own; treat a stack over three words as a prompt to check whether a verb went missing.
+
 Two rules follow. Keep a term when it is the defined technical word in the document's domain (*stale cache*, *canonical URL*, a *gate* in a workflow engine); replace it when it is a metaphor for an ordinary relationship. And do not let the instructions seed the words: this file and its neighbours used *load-bearing* twenty times and *verdict* eleven before the count was run, and Claude reads those files every session.
 
 The pattern names come from the `claudish` dictionary and its Claudish-to-English spec (programasweights/claudish, MIT), which describe the dialect from public Claude Code transcripts; the rates are from this repo's corpus.
@@ -268,7 +270,7 @@ Bold is 10× human and tables are roughly 190× human. Both are ways of avoiding
 - **Bold** marks a term the reader must retain, once, at first use. It does not mark the first three words of every bullet, and it does not mark a phrase for emphasis mid-sentence. If a bulleted list has a bold lead-in on every item, the list wants to be a table or a set of short paragraphs.
 - **Tables** are for data with two or more real dimensions. Three rows of prose with a colon in each are not a table.
 - **Headings** every few paragraphs turn an argument into a directory listing. Use them where a reader would want to jump; not as a substitute for a transition.
-- **Paragraphs** should carry three or four sentences. The one-sentence punchline paragraph is fine once or twice per document, and Claude currently uses it in 41 % of paragraphs.
+- **Paragraphs** should carry three or four sentences, and at most six. The one-sentence punchline paragraph is fine once or twice per document, and Claude currently uses it in 41 % of paragraphs. The ceiling rarely binds: only 4.45 % of 9,318 measured paragraphs run past six sentences, so the floor is the rule that does the work here.
 - **Lists** should be roughly parallel and roughly complete. Do not pad to three, and do not split one thought across two bullets so the list looks fuller.
 
 ## 10. Register
@@ -321,4 +323,5 @@ rg -o -- '\*\*[^*]+\*\*' FILE | wc -l # budget: 15 per 100 prose blocks
 - Do not add hedges to claims that are actually certain. A measured number is a measured number.
 - Do not swap the banned constructions for synonyms of themselves. Replacing `rather than` with `as opposed to` fixes the count and none of the writing.
 - Do not chase burstiness. Claude's sentence-length mean (21.9 words) and variance already sit inside the human range; sentence length is not the tell and does not need engineering.
+- Do not adopt a style standard without measuring it first. [ASD-STE100](https://www.asd-ste100.org/), the controlled language for aerospace maintenance manuals, was tried here in October 2026 and five of its rules were written into this file before anyone counted. The count then showed Claude producing four of the five targets *less* often than humans do: phrasal verbs at 0.89 per 10 K words against 5.47 in human blogs, ambiguous mid-sentence pronouns at 0.64 against 3.88, sentence-initial *This* at 3.18 against 5.73, and paragraphs over six sentences in 4.45 % of cases. Only noun stacks were elevated, weakly, at 1.3×, and §6b already covered them. The section came out again. This is the §1 failure repeating with a better-credentialed source: an authority's list describes the writers it was written for, not this one. `scripts/lexicon_survey.py --set ste` reproduces the numbers, and `notes/20261005-*-STE100-EVALUATION.md` records them.
 - Do not treat the counts as the goal. A draft can pass every budget in section 2 and still read as an ultimatum, a complaint, or a speech (sections 5e and 5f). The counts are a floor. Before calling a document done, read it once straight through as its recipient, with their stake and their power in mind, and fix what that reading finds even when the numbers are clean.
