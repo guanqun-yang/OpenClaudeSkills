@@ -64,8 +64,10 @@ The audience above is impatient *and* reading in a second language. Both make th
 
 ## Diagrams and Plots
 
-- **Use Mermaid for every diagram or plot.** Flowcharts, sequence diagrams, state machines, class diagrams, gantt charts, pie charts, ER diagrams, and architecture sketches all go in fenced ` ```mermaid ` code blocks.
-- **Never use ASCII art for plots or diagrams.** ASCII boxes-and-arrows, hand-drawn pipelines, and plain-text bar charts are forbidden — they render inconsistently across blog platforms, break on mobile, and look unprofessional. If a Mermaid diagram type does not exist for what you need, embed a real image (PNG/SVG) instead; do not fall back to ASCII.
+- **Three ways to draw a diagram, in order of preference.** Mermaid first, TikZ second, ASCII last.
+  1. **Mermaid** for a simpler diagram: flowcharts, sequence diagrams, state machines, class diagrams, gantt charts, pie charts, ER diagrams, and architecture sketches, each in a fenced ` ```mermaid ` block. Mermaid is preferred, not required.
+  2. **TikZ, compiled to SVG and then to PNG,** when Mermaid cannot express the figure or renders it badly. The path handles a simple figure as well as a complex one, so reach for it whenever layout control matters: precise placement, mathematical notation, nested boxes, custom arrows, or a plot with real axes. Keep the TikZ source in the post folder, commit the rendered PNG beside it, and embed the PNG with a fixed max-width.
+  3. **ASCII** only when neither path applies. It renders inconsistently across blog platforms and breaks on a phone screen, so use it for a small structure that a reader can take in at a glance, such as a directory tree, and never for a plot.
 - **Verify the Mermaid syntax with a real renderer before publishing.** Mermaid is unforgiving with unescaped parentheses, quotes, slashes, and certain characters in node labels, and "looks right" is not the same as "compiles." Run the Mermaid CLI:
 
   ```bash
@@ -73,7 +75,7 @@ The audience above is impatient *and* reading in a second language. Both make th
   ```
 
   If `mmdc` is not available, fall back to `https://mermaid.live/` (paste the source, confirm it renders, then copy back). Treat a parse error the same as a broken link — it must be fixed before the post ships.
-- **Never commit the rendered SVG or PNG of a Mermaid diagram.** The site renders Mermaid at read time: `pipeline.blog.publish` turns each ` ```mermaid ` fence into `<div class="mermaid">…</div>`, and the generated page loads Mermaid 11 from a CDN and converts that div into an `<svg>` in the reader's browser. The fence is therefore the deliverable, and a committed image file would be a second copy that goes stale the moment the fence is edited. The `mmdc` output from the verification step above is a throwaway artifact: write it to a scratch directory, confirm it compiles, and leave it there. No post in this repository ships a `.svg` or `.png` for a Mermaid diagram, and none should.
+- **Never commit the rendered SVG or PNG of a Mermaid diagram.** The site renders Mermaid at read time: `pipeline.blog.publish` turns each ` ```mermaid ` fence into `<div class="mermaid">…</div>`, and the generated page loads Mermaid 11 from a CDN and converts that div into an `<svg>` in the reader's browser. The fence is therefore the deliverable, and a committed image file would be a second copy that goes stale the moment the fence is edited. The `mmdc` output from the verification step above is a throwaway artifact: write it to a scratch directory, confirm it compiles, and leave it there. No post in this repository ships a `.svg` or `.png` for a Mermaid diagram, and none should. A TikZ figure is the opposite case: nothing renders its source at read time, so its PNG is the deliverable and belongs in the commit.
 - **A fence that looks blank locally is almost always the previewer, not the diagram.** The Markdown preview built into VS Code does not render Mermaid unless an extension is installed, so a perfectly correct diagram appears there as an empty block or as raw source. GitHub renders the fence, and so does the published page. Before concluding that a diagram is broken, check it where it will actually be read:
 
   ```bash
@@ -118,7 +120,7 @@ When you believe the post is done, do a **dedicated sweep** of the entire draft 
 6. **Citations** — every author name, year, or `[N]` marker is a clickable link to the original paper or website (publisher page, arXiv abs, or official site). No bare-name citations.
 7. **Paper summaries** — confirm each is foldable, was produced via the `paper-summary` skill, and lives inside the Appendix.
 8. **TOC and numbering** — confirm the TOC is present, renders on the target platform, and lists every numbered heading in the main narrative; confirm every section, subsection, and sub-subsection has its dotted number written into the heading text (`1.`, `1.1`, `1.1.1`); confirm the Appendix heading is unnumbered and absent from the TOC.
-9. **Mermaid** — every diagram has been rendered with `mmdc` (or `mermaid.live`) without parse errors; default direction is portrait (`TD`/`TB`); no row exceeds ~4 nodes; font is readable at ~800 px column width; the post folder contains no `.svg` or `.png` left over from that check; and `grep -c 'class="mermaid"'` on the built page equals the number of fences in the post.
+9. **Diagrams** — for each Mermaid fence: rendered with `mmdc` (or `mermaid.live`) without parse errors; default direction is portrait (`TD`/`TB`); no row exceeds ~4 nodes; font is readable at ~800 px column width; the post folder contains no `.svg` or `.png` left over from that check; and `grep -c 'class="mermaid"'` on the built page equals the number of fences in the post. For each TikZ figure: the source compiles, the PNG sits in the post folder, and the embed carries a max-width.
 10. **Currency notation** — `grep` the draft for `$` and confirm every currency mention uses `USD N` / `EUR N` / etc.; the only remaining `$` should be inside fenced code blocks or genuine `$...$` math delimiters.
 11. **Self-containment** — read the post pretending you have never seen the underlying papers, repos, or prior posts; every claim must still make sense from the text alone.
 12. **Plain language sweep** — five mechanical checks, done as a dedicated pass rather than while reading for sense:
@@ -127,11 +129,11 @@ When you believe the post is done, do a **dedicated sweep** of the entire draft 
     - **Metrics.** Every number with a unit or a 0-to-1 scale, and every table column header, states what it measures and which direction is better.
     - **Dates.** No "now", "recently", "last year", or "N weeks from now" without an absolute date beside it.
     - **Figurative language.** Reread hunting only for ordinary words used metaphorically, especially abstractions described as alive or physical. This pass finds what the idiom list cannot, because the list is never complete.
-13. **Chinese version** — the post is not finished until `README.zh.md` exists and passes the checklist in the Chinese Version section below.
+13. **Chinese version** — when the Chinese Version section below requires one, the post is not finished until `README.zh.md` exists and passes that section's checklist.
 
-## Chinese Version (Mandatory)
+## Chinese Version
 
-Every post ships with a Simplified Chinese version at `<post-folder>/README.zh.md`. A post whose folder has no `README.zh.md` is an unfinished post.
+**A Chinese version is required when the post folder already holds a significant amount of Chinese content, and optional otherwise.** Check the folder before deciding. When an earlier `README.zh.md`, a Chinese skeleton, or Chinese source material is already there, the post ships with a Simplified Chinese version at `<post-folder>/README.zh.md`, and a folder without one holds an unfinished post. When the folder has no Chinese in it, ask the user whether to write the Chinese version before starting it. Writing one unasked costs a full second draft, and the rules below make that draft expensive by design.
 
 **Do not produce it by translating the finished English post.** Translating anchors the Chinese to English clause boundaries and paragraph rhythm, and the output reads as translated however strongly the instruction says otherwise. Telling yourself to "restructure rather than mirror" does not escape this, because the English sentences are still the input. Remove them from the input instead.
 
