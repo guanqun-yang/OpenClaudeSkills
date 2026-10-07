@@ -91,7 +91,6 @@ The audience above is impatient *and* reading in a second language. Both make th
 ## Writing Style
 
 - **No em dashes or en dashes.** Use a comma, semicolon, or separate sentence instead. Never use `—` or `–`.
-- **No bare dollar signs for currency.** Write `USD 50` (or `50 USD`), not `$50`. Two or more `$` on the same line are parsed as math delimiters by most Markdown-to-HTML pipelines (KaTeX, MathJax, Pandoc with `--mathjax`), which silently swallows the prose between them. Reserve `$...$` and `$$...$$` strictly for actual math. For non-USD currencies, spell the ISO code (`EUR 50`, `JPY 5000`).
 - **The larger risk is the figurative use of an ordinary word, which no idiom list can enumerate.** The word is common, the reader knows it, and the intended meaning is metaphorical. The most frequent source is writing about an abstract thing as if it were alive or physical. Watch for it especially in research writing, where it is nearly invisible to the author:
   - a proposal or idea that "dies", is "killed", or "survives" → fails, is ruled out, holds up
   - a research area that is "stuck", "crowded", "thin", or "hot" → has not produced an answer, already has several papers, has few papers, is heavily published

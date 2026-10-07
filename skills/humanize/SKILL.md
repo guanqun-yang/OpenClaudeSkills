@@ -236,13 +236,7 @@ Arrows in running prose (`x -> y`, `→`) read as notation. Keep them in tables,
 
 ### 7b. The Comma After an Opener
 
-Claude drops the comma after an introductory phrase: *As a result the chairs see the wrong forum.* *On 11 September 2026 I asked the General Chair.* *In the three runs reported the gap closes.* Put the comma in, every time:
-
-- after a conjunctive adverb or a sentence adverb: *As a result,* *However,* *In other words,* *For example,* *In practice,*
-- after an introductory phrase that carries a date, a place, a condition, or a scope: *On 11 September 2026,* *At each budget,* *Under the signed contract,* *For a week,*
-- after a dependent clause: *If the folder does not exist,* *When a draft is over budget,*
-
-Some style guides allow the comma to be omitted after a very short prepositional phrase (*In 2024 we moved*). Do not take that permission. The readers of these documents are often parsing in a second language, and the comma marks where the subject of the sentence begins; without it, *On 11 September 2026 I asked* makes the reader find the boundary themselves. This rule was not measured in the survey; it was added on 16 September 2026 from the same reader feedback as section 5c.
+The user-level Typography rules require it, so this section is a checklist for the three places Claude drops it: after a conjunctive or sentence adverb (*As a result,* *However,* *In other words,*), after an opener carrying a date, place, condition, or scope (*On 11 September 2026,* *At each budget,*), and after a dependent clause (*If the folder does not exist,*). Some style guides allow the comma to be omitted after a very short prepositional phrase (*In 2024 we moved*). Do not take that permission. This rule was not measured in the survey; it was added on 16 September 2026 from the same reader feedback as section 5c.
 
 ## 8. Certainty and Conversational Repair
 

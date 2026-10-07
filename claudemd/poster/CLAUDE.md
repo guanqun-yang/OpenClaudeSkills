@@ -30,7 +30,7 @@ These are the lessons that cost the most iteration time. Internalize them.
     └── ...
 ```
 
-Same content/style separation as the latex-paper-project skill: `tables/` holds bare `tabular` rows, `figures/` holds rendered images, the float wrapper (caption, label, placement) lives in the section file at the inclusion point.
+Same content and style separation as the `paper-writing` preset, §1.1: `tables/` holds bare `tabular` rows, `figures/` holds rendered images, the float wrapper (caption, label, placement) lives in the section file at the inclusion point.
 
 ## Layout decision tree
 

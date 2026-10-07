@@ -14,7 +14,6 @@ This repository is a curated public mirror — a private working repo holds the 
 | `email` | Writes or revises an email so that it gets a reply, against budgets measured on real mailboxes in five peer-reviewed studies: a 40 to 50 word body, one person on the To line, one answerable question, a short subject, no manual line breaks, no font settings. Covers cold outreach and CAN-SPAM. |
 | `en-zh-translation` | Practices for English → Simplified Chinese prose translation: terminology consistency, sentence restructuring, punctuation, bilingual LaTeX typesetting. |
 | `humanize` | Makes Claude-written prose read as human, with per-1,000-word budgets for the tics that actually show up under measurement (`rather than`, negation frames, em dashes, bold and table scaffolding) and rewrites for each. |
-| `latex-paper-project` | File layout and editing conventions for LaTeX paper projects (`main.tex`, `sections/`, `figures/`, `tables/`, `zotero.bib`). |
 | `minto` | Structures a document as a Minto pyramid before drafting, or reverse-engineers a draft into one and repairs it. Covers memos, Slack messages, reports, and proposals as well as papers and rebuttals. |
 | `modern-cli` | Prefers faster CLI replacements (eza, bat, fd, rg, dust, tokei, xh) with flags that suppress interactive TUI output. |
 | `paper-summary` | Turns paper PDFs into structured two-section deep dives: executive summary plus method walkthrough. |
@@ -81,7 +80,7 @@ Rule of thumb: if you would be annoyed when Claude forgets a rule, it belongs in
 ```mermaid
 flowchart TD
     subgraph always["Always loaded, every turn"]
-        G["~/.claude/CLAUDE.md<br/>reader, replies, wording"]
+        G["~/.claude/CLAUDE.md<br/>reader, replies, wording, typography"]
         P["project CLAUDE.md<br/>coding · paper-writing · blog · poster · rebuttal"]
         G --- P
     end
