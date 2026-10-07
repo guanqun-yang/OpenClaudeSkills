@@ -17,6 +17,7 @@ This repository is a curated public mirror — a private working repo holds the 
 | `minto` | Structures a document as a Minto pyramid before drafting, or reverse-engineers a draft into one and repairs it. Covers memos, Slack messages, reports, and proposals as well as papers and rebuttals. |
 | `modern-cli` | Prefers faster CLI replacements (eza, bat, fd, rg, dust, tokei, xh) with flags that suppress interactive TUI output. |
 | `paper-summary` | Turns paper PDFs into structured two-section deep dives: executive summary plus method walkthrough. |
+| `seek-arxiv` | Searches the titles, authors and abstracts of arXiv papers submitted since 2011 on the local machine, with the [ArxivDB](https://github.com/guanqun-yang/ArxivDB) command-line tool: BM25 ranking, year and category filters, full records by ID. |
 | `system-branding` | Generates names for CS research systems, then checks uniqueness against Google Scholar, GitHub, and DBLP. |
 | `vale` | Runs the Vale prose linter as a deterministic editing pass: applies the fix each rule defines, lists what needs judgment, and names the error classes a pattern linter cannot see. Ships a tuned config for Markdown and LaTeX. |
 
