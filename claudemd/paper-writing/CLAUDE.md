@@ -125,6 +125,7 @@ The rules below are grouped by topic: directory-level conventions first (how eac
 - It contains `\input{sections/001-...}`, `\input{sections/002-...}`, etc. in numerical order.
 - When adding a new section, insert the `\input{}` line in the correct numerical position in `main.tex`.
 - **Always compile with `-synctex=1` so the source and PDF are two-way syncable.** Invoke `pdflatex -synctex=1 main.tex` or `latexmk -synctex=1 -pdf main.tex`. This emits `main.synctex.gz` and enables forward search (source line → PDF location) and reverse search (Ctrl/Cmd+click in the PDF → source line) in editors that support SyncTeX (VS Code LaTeX Workshop, TeXstudio, TeXShop, Skim). The `.synctex.gz` artifact is regenerated each build and is already gitignored. Two-way sync is the difference between a 5-second jump to the offending paragraph and a 5-minute scroll-and-grep search; the flag is non-optional.
+- **Every build also runs the layout checker** (`scripts/check_layout.py`, called from `latexmkrc`). It lists loose and overfull lines and headings outside Title Case; §A2 says how to set it up and how to fix what it finds.
 
 ### 3.2 Sections (`sections/`)
 
@@ -296,35 +297,48 @@ The "block-canonical" share (canonical block order, tolerating split Method and 
 
 ### A2. Monospaced Identifiers and Line-Break Robustness
 
-LaTeX's default `\texttt{}` mishandles two common cases when typesetting code identifiers in prose. First, the underscore character renders with a visible kerning gap (the `\_` macro disables kerning around `\textunderscore`, and several common mono fonts compound the issue with wide underscore side-bearings). Second, long hyphenated identifiers (file paths, task names, function identifiers like `flood-risk-analysis` or `liu_refined`) refuse to break across lines, producing loose paragraphs, stretched word-spacing, and orphan commas. Apply all five fixes below together; partial application leaves visible residue.
+Justified two-column text can stretch only at spaces, and the typewriter font never hyphenates. A long identifier in `\texttt{}` therefore either runs past the margin or leaves a line with wide word gaps, and `--` inside it turns into an en dash. Item 1 removes these mechanical causes in the preamble, and item 4 finds the lines that only rewording can fix. Apply every item; a partial setup leaves visible loose lines.
 
-**1. Preamble.** Add the following to `main.tex`:
+**1. Preamble.** Load `microtype` and `inconsolata` first (the ACL template does both), then add:
 
 ```latex
-\usepackage{inconsolata}          % mono font with tight underscore glyph
+\usepackage{array}
 \usepackage{underscore}           % literal _ in text mode, no kerning gap
 \usepackage{url}
 \makeatletter
-\g@addto@macro\UrlBreaks{\do\-}   % allow line breaks at hyphens
-\DeclareUrlCommand{\tool@inner}{\urlstyle{tt}}
-\DeclareRobustCommand{\tool}{\tool@inner}
+\g@addto@macro\UrlBreaks{\do\-}   % \url may also break at hyphens
+% \code breaks after / . _ - : at a penalty, so short names split only when nothing else fits
+\DeclareUrlCommand{\code@inner}{\urlstyle{tt}\def\UrlBreaks{\do\/\do\.\do\_\do\-\do\:}\def\UrlBigBreaks{}%
+  \mathchardef\UrlBreakPenalty=3000\relax}
+\DeclareRobustCommand{\code}{\code@inner}
+\let\tool\code                    % earlier name, so old sources still compile
+% Footnotes hold URLs and identifiers, so set them ragged-right
+\let\paper@footnotetext\@footnotetext
+\long\def\@footnotetext#1{\paper@footnotetext{\raggedright #1}}
 \makeatother
+\DisableLigatures[-]{encoding = T1, family = tt*}         % "--" in typewriter text stays two hyphens
+\setlength{\emergencystretch}{3em}                        % spread stretch over the whole paragraph
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % ragged-right table column
 ```
 
-This gives two macros for monospaced text:
+Do not give `\Urlmuskip` a stretchable value: it opens visible gaps around dots (`package . json`).
 
-- `\texttt{...}` for short, single-word identifiers that fit on a line (`bm25`, `none`, `pytest`, `SKILL.md`).
-- `\tool{...}` for long hyphenated or underscored identifiers (`liu_refined`, `flood-risk-analysis`, `/path/to/file`). Built on the `url` package, so it breaks at `-`, `_`, `/`, `.` and is robust in moving arguments like `\caption{}` and `\footnote{}`.
+**2. Which macro.**
 
-Write identifiers literally inside `\tool{}`, with no `\_` escape needed. `\tool{liu_refined}` is correct; `\tool{liu\_refined}` is wrong.
+- `\code{...}` for every identifier without spaces: file names, paths, package names, flags, and provider model identifiers. Write `_`, `{`, and `}` literally: `\code{reasoning_effort}`, `\code{/tmp/workspaces/{project}}`. It is robust in `\caption{}` and `\footnote{}`.
+- `\texttt{...}` only for strings that contain spaces, such as `\texttt{npx tsc --noEmit}`. TeX breaks them at the spaces.
+- `L{width}` instead of `p{width}` for narrow table columns that hold identifiers or prose.
 
-**2. Mono font choice.** Default Computer Modern Typewriter and Bera Mono render `_` with visible side-bearings. `inconsolata` does not. If a linter or template adds another mono-font package (e.g., `\usepackage[scaled=0.85]{beramono}`), remove it: the later-loaded package overrides `inconsolata`. The `underscore` package only helps if the active mono font has a tight `_` glyph in the first place.
+**3. Mono font.** Default Computer Modern Typewriter and Bera Mono render `_` with visible side-bearings, and `inconsolata` does not. If a linter or template adds another mono-font package (e.g., `\usepackage[scaled=0.85]{beramono}`), remove it, because the later-loaded package overrides `inconsolata`.
 
-**3. Avoid rigid spacing compounds in captions.** A construct like `34K\,$\times$\,Backbone` glues those three tokens into one unbreakable unit via thin non-breaking spaces. Inside a narrow caption box this forces ugly word-spacing stretches elsewhere in the caption. Restructure to plain prose ("on the 34K pool with Backbone") or use regular spaces around the cross product (`34K $\times$ Backbone`) so LaTeX can break at the spaces. The same rule applies to any chained `\,...\,` compound in narrow boxes.
+**4. Checker.** The project's `latexmkrc` runs `scripts/check_layout.py` after every build; the `latex-layout-check` skill holds the script and the two `latexmkrc` lines. The checker lists every loose line with badness 2000 or more and every overfull line, each with its source file and line range, and every heading that is not in Title Case (§3.11). It counts bibliography lines separately, because the venue's `.bst` sets them. A draft is not done while the checker lists a line in the text.
 
-**4. Dense `\texttt{}` lists need structural rewriting, not just `\allowbreak`.** Adding `\allowbreak` after each item lets LaTeX break *before* the next comma, producing orphan commas on their own lines, which is worse than the original problem. The right fix is one of:
+**5. Fixing a flagged line.** The preamble cannot fix wording. In order of preference:
 
-- Use `\tool{}` instead, so the items themselves can break at hyphens/underscores; OR
-- Restructure the sentence so the identifier list sits at the end of a clause with room to break. For example, rewrite *"...where the gold matches closely (`\tool{a-b-c}`, `\tool{d-e-f}`, `\tool{g-h-i}`: +0.89 to +1.00 gain)"* as *"The largest positive lifts (+0.89 to +1.00) occur on tasks like `\tool{a-b-c}` and `\tool{d-e-f}`."* Fewer examples per parenthetical, and the long identifiers end the clause where LaTeX has room.
+- Move the identifier to the end of its clause, where LaTeX has room to break. Rewrite *"...where the gold matches closely (`\code{a-b-c}`, `\code{d-e-f}`, `\code{g-h-i}`: +0.89 to +1.00 gain)"* as *"The largest lifts (+0.89 to +1.00) occur on tasks like `\code{a-b-c}` and `\code{d-e-f}`."*
+- Turn a run of identifiers in prose, such as the dependency lists of a classifier, into a table with one row per rule.
+- Join prose words with `\slash` instead of `/`: `HTML\slash CSS\slash JavaScript`. `\slash` allows a break after each slash.
+- Replace rigid spacing compounds in captions, such as `34K\,$\times$\,Backbone`, with plain prose or ordinary spaces (`34K $\times$ Backbone`).
+- Do not add `\allowbreak` after the commas of an identifier list, because it leaves orphan commas, and do not set `\sloppy` for the whole document.
 
-**5. Pull function-call signatures out of `\tool{}`.** Because `\tool` is built on `\url`, its argument cannot contain spaces. Write `\tool{func_name}(arg1, arg2)` rather than `\tool{func_name(arg1, arg2)}`. The identifier itself stays monospaced; the call signature is plain prose. The same applies to type annotations, dictionary key/value pairs, and any other monospaced span with internal spaces.
+**6. Function calls.** `\code` cannot contain spaces, so write `\code{func_name}(arg1, arg2)`, not `\code{func_name(arg1, arg2)}`. The same applies to type annotations, dictionary key/value pairs, and any other monospaced span with internal spaces.
