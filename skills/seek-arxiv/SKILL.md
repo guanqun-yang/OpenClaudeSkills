@@ -1,9 +1,11 @@
 ---
 name: seek-arxiv
-description: Search the titles, authors and abstracts of arXiv papers submitted since 2011 on the local machine with the ArxivDB command-line tool. Use when the user asks to find, identify or cite arXiv papers, or to collect related work on a topic.
+description: Search the titles, authors and abstracts of arXiv papers submitted since 2011 on the local machine with the ArxivDB command-line tool. Use when the user asks to find, identify or cite arXiv papers, or to collect related work on a topic, and the seek-arxiv MCP tools (mcp__seek-arxiv__*) are not available. A tool listed only by name among the deferred tools counts as available. When those tools are available, call them instead of this skill.
 ---
 
 # seek-arxiv
+
+Use the `seek-arxiv` MCP server first. When the tools `mcp__seek-arxiv__search_papers`, `mcp__seek-arxiv__get_papers` and `mcp__seek-arxiv__get_index_status` are available, call them and do not follow the steps below. A tool that appears only by name in the list of deferred tools is available too. Load it with ToolSearch, then call it. In Cowork, where the desktop app relays local servers, the same tools may appear under another prefix, such as `mcp__remote-devices__seek-arxiv__search_papers`. The server searches the same checkout and index, runs a fixed interpreter, and reports an outdated index in every result. This skill is the fallback for an environment where the server cannot run, such as a corporate network.
 
 [ArxivDB](https://github.com/guanqun-yang/ArxivDB) stores the title, authors, abstract and categories of arXiv papers submitted since January 2011, as JSON Lines files in a git repository. A GitHub workflow adds new and revised papers daily at 06:00 UTC. The ArxivDB command-line tool ranks papers with BM25, a keyword-ranking formula, and works offline once the repository is cloned.
 
@@ -17,7 +19,24 @@ cd "$ARXIVDB_DIR"
 
 The clone downloads about 1.1 GB and occupies 4.3 GB. In one test, it took 6.4 minutes. With an index, the checkout needs about 10 GB of disk. Run the commands below from `$ARXIVDB_DIR`, or from anywhere after the install in step 2.
 
+**Prefer the checkout's own interpreter when it has one.** A checkout that was installed into a virtual environment keeps that environment at `$ARXIVDB_DIR/.venv`, and the packages are reachable only through it:
+
+```bash
+PY="$ARXIVDB_DIR/.venv/bin/python"
+test -x "$PY" || PY="python"
+```
+
+Then write `"$PY" -m arxivdb ...` in place of `python -m arxivdb ...` everywhere below. A bare `python` resolves to whatever conda or pyenv has activated, which raises `ModuleNotFoundError: No module named 'bm25s'` while the index sits there complete and correct.
+
 ## Prepare the index
+
+Before any step below, check whether another session is already rebuilding the index:
+
+```bash
+pgrep -fl "arxivdb [b]uild"
+```
+
+The brackets keep the pattern from matching the shell that runs it. If it prints a process, skip steps 1 and 3, wait about 5 minutes for that build to finish, and then search. A rebuild deletes the index before it writes the new one, so a missing `index/meta.json` during that time does not mean the index needs building. A second build would double the 12.6 GB memory peak, and a `git pull` during a build changes the files the build is reading.
 
 1. Fetch the latest papers with `git pull --ff-only`. Skip this step when the machine is offline.
 2. Install the packages once with `python -m pip install -e .`, preferably inside a virtual environment. Writing `python -m pip` installs into the same Python that runs the commands below. The install adds the packages `bm25s`, `PyStemmer`, `numpy` and `scipy`.
