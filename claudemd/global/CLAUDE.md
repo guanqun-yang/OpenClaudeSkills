@@ -77,7 +77,7 @@ Glyphs and case, the same in Markdown and in LaTeX.
 - Hyphens only out of necessity: a compound adjective before its noun (`a well-known result`, `a 30-day window`), or a prefix that needs disambiguation (`non-trivial`, `re-cover`). Not for an `-ly` adverb, so `newly added`. Not after a linking verb, so `the result is well known`. Not for a phrase the field writes open, so `machine learning model`.
 - A comma after every introductory phrase, and before a coordinating conjunction that joins two independent clauses. No length exempts it; a three-word opener keeps the comma. Write "In this paper, we present X". Without the comma the reader backtracks to find where the opener ended.
 - Non-essential content takes the wrapper that matches its role: appositive commas for a noun phrase that renames the noun before it, `namely` or `specifically` for an emphasized instance, `such as` or `including` for an open example list, parentheses for a citation or a first-use abbreviation, a footnote for a technical caveat, a new sentence for anything past about ten words.
-- Em dashes carry the one-per-thousand-words budget set under Wording. The `blog`, `paper-writing`, and `rebuttal` presets lower that budget to zero and each name the glyphs it covers. A preset that stays silent leaves the budget as written.
+- Em dashes carry the one-per-thousand-words budget set under Wording. The `blog`, `paper-writing`, `rebuttal`, and `report` presets lower that budget to zero and each name the glyphs it covers. A preset that stays silent leaves the budget as written.
 
 ## Email
 
