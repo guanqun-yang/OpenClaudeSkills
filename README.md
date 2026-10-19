@@ -24,7 +24,7 @@ This repository is a curated public mirror — a private working repo holds the 
 
 ## `CLAUDE.md` templates
 
-Drop-in project instructions for a given kind of work: `blog`, `coding`, `paper-writing`, `poster`, `rebuttal`, `report`.
+Drop-in project instructions for a given kind of work: `blog`, `coding`, `deck`, `paper-writing`, `poster`, `rebuttal`, `report`.
 
 ## Slash commands
 
@@ -120,7 +120,7 @@ Claude Code loads every `CLAUDE.md` it can find, in full, at the start of each s
 | Layer | Source | Copy to | Loaded when | Holds |
 |---|---|---|---|---|
 | User | `claudemd/global/CLAUDE.md` | `~/.claude/CLAUDE.md` | every session, in every directory | who the reader is, how replies and prose are written |
-| Project | `claudemd/<mode>/CLAUDE.md` | `<project>/CLAUDE.md` | sessions started inside that project | rules for one kind of work: `coding`, `paper-writing`, `blog`, `poster`, `rebuttal`, `report` |
+| Project | `claudemd/<mode>/CLAUDE.md` | `<project>/CLAUDE.md` | sessions started inside that project | rules for one kind of work: `coding`, `paper-writing`, `blog`, `poster`, `rebuttal`, `report`, `deck` |
 
 Skills are the third layer: their descriptions are always loaded, their bodies only on `/name` or auto-match.
 
